@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
 import { Section } from './components/Section'
 import { NavBar } from './components/NavBar'
 import { Card } from './components/Card'
@@ -63,9 +64,29 @@ function App() {
         className="h-screen overflow-y-scroll snap-y scrollbar-hide"
       >
         <Section id="home">
-          <h1 className="text-6xl font-bold text-primary text-center">
-            Homelabbing Workshop
-          </h1>
+          <div className="text-center space-y-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h1 className="text-7xl md:text-8xl font-black tracking-tight text-white mb-4">
+                Homelabbing
+              </h1>
+              <h2 className="text-4xl md:text-5xl font-bold text-primary">
+                Self-Host Everything
+              </h2>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="text-xl text-muted max-w-2xl mx-auto"
+            >
+              Take control of your data, learn new skills, and run your own services
+            </motion.p>
+          </div>
         </Section>
         <Section id="what-why">
           <div className="space-y-6">
