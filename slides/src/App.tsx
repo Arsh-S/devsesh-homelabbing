@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Section } from './components/Section'
 import { NavBar } from './components/NavBar'
+import { Card } from './components/Card'
 
 const NAV_ITEMS = [
   { id: 'home', label: 'Home' },
@@ -67,7 +68,19 @@ function App() {
           </h1>
         </Section>
         <Section id="what-why">
-          <h2 className="text-4xl font-bold text-center">What & Why</h2>
+          <div className="space-y-6">
+            <h2 className="text-5xl font-bold text-center mb-8">What & Why</h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              <Card delay={0}>
+                <h3 className="text-2xl font-bold text-primary mb-2">What is Homelabbing?</h3>
+                <p className="text-muted">Self-hosting services on your own hardware</p>
+              </Card>
+              <Card delay={0.1}>
+                <h3 className="text-2xl font-bold text-secondary mb-2">Why do it?</h3>
+                <p className="text-muted">Privacy, learning, control, and cost savings</p>
+              </Card>
+            </div>
+          </div>
         </Section>
         <Section id="how-it-works">
           <h2 className="text-4xl font-bold text-center">How it Works</h2>
