@@ -447,7 +447,75 @@ services:
           </div>
         </Section>
         <Section id="activity">
-          <h2 className="text-4xl font-bold text-center">Hands-on Activity</h2>
+          <div className="space-y-8">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-5xl md:text-6xl font-bold text-center mb-12"
+            >
+              Hands-on <span className="text-primary">Activity</span>
+            </motion.h2>
+
+            <Card delay={0} className="border-primary/50">
+              <h3 className="text-4xl font-bold text-primary mb-4 text-center">
+                Deploy Uptime Kuma
+              </h3>
+              <p className="text-xl text-center text-muted">
+                Monitor your websites in 5 minutes
+              </p>
+            </Card>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <Card delay={0.1}>
+                <div className="text-4xl mb-3">1️⃣</div>
+                <h4 className="text-xl font-bold mb-2">Clone the repo</h4>
+                <pre className="bg-background rounded p-2 text-sm mt-3">
+                  <code className="text-primary">git clone &lt;repo-url&gt;</code>
+                </pre>
+                <p className="text-xs text-muted mt-2">Your instructor will provide the URL</p>
+              </Card>
+
+              <Card delay={0.2}>
+                <div className="text-4xl mb-3">2️⃣</div>
+                <h4 className="text-xl font-bold mb-2">Start the service</h4>
+                <pre className="bg-background rounded p-2 text-sm mt-3">
+                  <code className="text-primary">docker compose up -d</code>
+                </pre>
+              </Card>
+
+              <Card delay={0.3}>
+                <div className="text-4xl mb-3">3️⃣</div>
+                <h4 className="text-xl font-bold mb-2">Open in browser</h4>
+                <pre className="bg-background rounded p-2 text-sm mt-3">
+                  <code className="text-primary">localhost:3001</code>
+                </pre>
+              </Card>
+
+              <Card delay={0.4}>
+                <div className="text-4xl mb-3">4️⃣</div>
+                <h4 className="text-xl font-bold mb-2">Create account</h4>
+                <p className="text-sm text-muted mt-2">Set up your admin username and password</p>
+              </Card>
+
+              <Card delay={0.5}>
+                <div className="text-4xl mb-3">5️⃣</div>
+                <h4 className="text-xl font-bold mb-2">Add monitors</h4>
+                <p className="text-sm text-muted mt-2">Monitor your own websites and projects</p>
+              </Card>
+
+              <Card delay={0.6}>
+                <div className="text-4xl mb-3">6️⃣</div>
+                <h4 className="text-xl font-bold mb-2">Explore features</h4>
+                <p className="text-sm text-muted mt-2">Status pages, notifications, and more</p>
+              </Card>
+            </div>
+
+            <Card delay={0.7} className="border-secondary/50 bg-card text-center">
+              <p className="text-xl text-muted">
+                Full instructions in the <span className="text-primary font-semibold">demo/</span> folder
+              </p>
+            </Card>
+          </div>
         </Section>
       </div>
     </div>
