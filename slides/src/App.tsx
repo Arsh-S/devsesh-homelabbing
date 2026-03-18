@@ -282,7 +282,96 @@ services:
           </div>
         </Section>
         <Section id="services">
-          <h2 className="text-4xl font-bold text-center">Cool Services</h2>
+          <div className="space-y-8">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-5xl md:text-6xl font-bold text-center mb-12"
+            >
+              Cool Services to <span className="text-primary">Self-Host</span>
+            </motion.h2>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              <Card delay={0} className="border-purple-500/30">
+                <h3 className="text-3xl font-bold text-purple-400 mb-4">📺 Media Servers</h3>
+                <div className="space-y-3">
+                  <div>
+                    <p className="font-semibold text-lg">Plex / Jellyfin</p>
+                    <p className="text-sm text-muted">Stream your movies and TV shows anywhere</p>
+                    <p className="text-xs text-muted mt-1">⭐ Easy setup</p>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-lg">Navidrome</p>
+                    <p className="text-sm text-muted">Your own Spotify for music you own</p>
+                    <p className="text-xs text-muted mt-1">⭐ Easy setup</p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card delay={0.1} className="border-blue-500/30">
+                <h3 className="text-3xl font-bold text-blue-400 mb-4">🛠️ Dev Tools</h3>
+                <div className="space-y-3">
+                  <div>
+                    <p className="font-semibold text-lg">Uptime Kuma</p>
+                    <p className="text-sm text-muted">Monitor your websites and get alerts</p>
+                    <p className="text-xs text-muted mt-1">⭐ We'll use this today!</p>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-lg">code-server</p>
+                    <p className="text-sm text-muted">VS Code in your browser, code from anywhere</p>
+                    <p className="text-xs text-muted mt-1">⭐⭐ Medium difficulty</p>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-lg">Gitea / Hoppscotch</p>
+                    <p className="text-sm text-muted">Self-hosted Git repos and API testing</p>
+                    <p className="text-xs text-muted mt-1">⭐ Easy setup</p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card delay={0.2} className="border-green-500/30">
+                <h3 className="text-3xl font-bold text-green-400 mb-4">📸 Photos & Files</h3>
+                <div className="space-y-3">
+                  <div>
+                    <p className="font-semibold text-lg">Immich</p>
+                    <p className="text-sm text-muted">Google Photos alternative with AI features</p>
+                    <p className="text-xs text-muted mt-1">⭐⭐ Medium difficulty</p>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-lg">Nextcloud</p>
+                    <p className="text-sm text-muted">Complete Google Drive replacement</p>
+                    <p className="text-xs text-muted mt-1">⭐⭐⭐ More complex</p>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-lg">Syncthing</p>
+                    <p className="text-sm text-muted">Sync files between devices, no cloud</p>
+                    <p className="text-xs text-muted mt-1">⭐ Easy setup</p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card delay={0.3} className="border-yellow-500/30">
+                <h3 className="text-3xl font-bold text-yellow-400 mb-4">⚡ Productivity & More</h3>
+                <div className="space-y-3">
+                  <div>
+                    <p className="font-semibold text-lg">Outline / Bookstack</p>
+                    <p className="text-sm text-muted">Team wikis and documentation</p>
+                    <p className="text-xs text-muted mt-1">⭐⭐ Medium difficulty</p>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-lg">n8n</p>
+                    <p className="text-sm text-muted">Workflow automation like Zapier</p>
+                    <p className="text-xs text-muted mt-1">⭐⭐ Medium difficulty</p>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-lg">Home Assistant</p>
+                    <p className="text-sm text-muted">Automate your entire smart home</p>
+                    <p className="text-xs text-muted mt-1">⭐⭐⭐ Complex but powerful</p>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </div>
         </Section>
         <Section id="get-started">
           <h2 className="text-4xl font-bold text-center">Get Started</h2>
