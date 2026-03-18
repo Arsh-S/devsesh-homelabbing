@@ -374,7 +374,77 @@ services:
           </div>
         </Section>
         <Section id="get-started">
-          <h2 className="text-4xl font-bold text-center">Get Started</h2>
+          <div className="space-y-8">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-5xl md:text-6xl font-bold text-center mb-12"
+            >
+              Ready to <span className="text-primary">Get Started</span>?
+            </motion.h2>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              <Card delay={0}>
+                <h3 className="text-3xl font-bold text-primary mb-4">📚 Resources</h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary mt-1">→</span>
+                    <div>
+                      <p className="font-semibold">awesome-selfhosted</p>
+                      <p className="text-sm text-muted">GitHub repo with 1000+ services</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary mt-1">→</span>
+                    <div>
+                      <p className="font-semibold">r/selfhosted</p>
+                      <p className="text-sm text-muted">Active Reddit community</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary mt-1">→</span>
+                    <div>
+                      <p className="font-semibold">r/homelab</p>
+                      <p className="text-sm text-muted">Show off your setup</p>
+                    </div>
+                  </li>
+                </ul>
+              </Card>
+
+              <Card delay={0.2}>
+                <h3 className="text-3xl font-bold text-secondary mb-4">🎯 Start Small</h3>
+                <ol className="space-y-3">
+                  <li className="flex gap-3">
+                    <span className="font-bold text-secondary">1.</span>
+                    <div>
+                      <p className="font-semibold">Install Docker Desktop</p>
+                      <p className="text-sm text-muted">Available for Mac, Windows, Linux</p>
+                    </div>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-bold text-secondary">2.</span>
+                    <div>
+                      <p className="font-semibold">Try one service</p>
+                      <p className="text-sm text-muted">Start with something simple like Uptime Kuma</p>
+                    </div>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="font-bold text-secondary">3.</span>
+                    <div>
+                      <p className="font-semibold">Expand gradually</p>
+                      <p className="text-sm text-muted">Add more services as you learn</p>
+                    </div>
+                  </li>
+                </ol>
+              </Card>
+            </div>
+
+            <Card delay={0.4} className="border-primary/50 text-center">
+              <p className="text-2xl font-bold text-primary">
+                Let's try it hands-on! →
+              </p>
+            </Card>
+          </div>
         </Section>
         <Section id="activity">
           <h2 className="text-4xl font-bold text-center">Hands-on Activity</h2>
