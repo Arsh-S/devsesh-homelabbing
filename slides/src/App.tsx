@@ -130,7 +130,85 @@ function App() {
           </div>
         </Section>
         <Section id="how-it-works">
-          <h2 className="text-4xl font-bold text-center">How it Works</h2>
+          <div className="space-y-8">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-5xl md:text-6xl font-bold text-center mb-12"
+            >
+              How Does it <span className="text-primary">Work</span>?
+            </motion.h2>
+
+            <div className="grid lg:grid-cols-2 gap-8">
+              <Card delay={0}>
+                <h3 className="text-3xl font-bold text-primary mb-4">Hardware Options</h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary mt-1">💻</span>
+                    <div>
+                      <p className="font-semibold">Old Laptop/Desktop</p>
+                      <p className="text-sm text-muted">Free! Repurpose old hardware</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary mt-1">🥧</span>
+                    <div>
+                      <p className="font-semibold">Raspberry Pi</p>
+                      <p className="text-sm text-muted">~$50-100, low power consumption</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary mt-1">🖥️</span>
+                    <div>
+                      <p className="font-semibold">Mini PC (Intel NUC)</p>
+                      <p className="text-sm text-muted">More power, still compact</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-primary mt-1">☁️</span>
+                    <div>
+                      <p className="font-semibold">Cloud VPS</p>
+                      <p className="text-sm text-muted">DigitalOcean, Hetzner, Linode</p>
+                    </div>
+                  </li>
+                </ul>
+              </Card>
+
+              <Card delay={0.2}>
+                <h3 className="text-3xl font-bold text-secondary mb-4">Networking Basics</h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <span className="text-secondary mt-1">🔌</span>
+                    <div>
+                      <p className="font-semibold">Ports</p>
+                      <p className="text-sm text-muted">Different services use different ports (80, 443, 3000, etc.)</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-secondary mt-1">🏠</span>
+                    <div>
+                      <p className="font-semibold">Local vs Public Access</p>
+                      <p className="text-sm text-muted">Access from home network or expose to internet</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-secondary mt-1">🔀</span>
+                    <div>
+                      <p className="font-semibold">Reverse Proxy</p>
+                      <p className="text-sm text-muted">Nginx, Caddy, Traefik route traffic to services</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-secondary mt-1">🌐</span>
+                    <div>
+                      <p className="font-semibold">Dynamic DNS & Domains</p>
+                      <p className="text-sm text-muted">Access via custom domain name</p>
+                    </div>
+                  </li>
+                </ul>
+              </Card>
+            </div>
+          </div>
         </Section>
         <Section id="docker">
           <h2 className="text-4xl font-bold text-center">Docker 101</h2>
