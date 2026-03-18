@@ -89,18 +89,44 @@ function App() {
           </div>
         </Section>
         <Section id="what-why">
-          <div className="space-y-6">
-            <h2 className="text-5xl font-bold text-center mb-8">What & Why</h2>
-            <div className="grid md:grid-cols-2 gap-6">
+          <div className="space-y-8">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-5xl md:text-6xl font-bold text-center"
+            >
+              What is <span className="text-primary">Homelabbing</span>?
+            </motion.h2>
+
+            <div className="grid md:grid-cols-3 gap-6">
               <Card delay={0}>
-                <h3 className="text-2xl font-bold text-primary mb-2">What is Homelabbing?</h3>
-                <p className="text-muted">Self-hosting services on your own hardware</p>
+                <h3 className="text-2xl font-bold text-primary mb-3">Privacy First</h3>
+                <p className="text-muted leading-relaxed">
+                  Your data stays on your hardware. No tech giants tracking everything you do.
+                </p>
               </Card>
+
               <Card delay={0.1}>
-                <h3 className="text-2xl font-bold text-secondary mb-2">Why do it?</h3>
-                <p className="text-muted">Privacy, learning, control, and cost savings</p>
+                <h3 className="text-2xl font-bold text-secondary mb-3">Save Money</h3>
+                <p className="text-muted leading-relaxed">
+                  Stop paying monthly subscriptions. One-time hardware cost, unlimited services.
+                </p>
+              </Card>
+
+              <Card delay={0.2}>
+                <h3 className="text-2xl font-bold text-destructive mb-3">Learn & Grow</h3>
+                <p className="text-muted leading-relaxed">
+                  Master Docker, networking, Linux, and infrastructure - real-world skills.
+                </p>
               </Card>
             </div>
+
+            <Card delay={0.3} className="border-primary/30">
+              <p className="text-xl text-center">
+                <span className="font-bold text-primary">Self-hosting</span> means running your own
+                services (media servers, cloud storage, dev tools) on hardware you control.
+              </p>
+            </Card>
           </div>
         </Section>
         <Section id="how-it-works">
