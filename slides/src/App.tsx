@@ -211,7 +211,75 @@ function App() {
           </div>
         </Section>
         <Section id="docker">
-          <h2 className="text-4xl font-bold text-center">Docker 101</h2>
+          <div className="space-y-8">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-5xl md:text-6xl font-bold text-center mb-12"
+            >
+              <span className="text-primary">Docker</span> 101
+            </motion.h2>
+
+            <Card delay={0} className="border-primary/30">
+              <h3 className="text-3xl font-bold text-primary mb-4">What is Docker?</h3>
+              <p className="text-lg text-muted leading-relaxed">
+                Docker packages your app with everything it needs (code, dependencies, config)
+                into a <span className="text-white font-semibold">container</span> that runs
+                the same everywhere.
+              </p>
+            </Card>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <Card delay={0.1}>
+                <div className="text-4xl mb-3">📦</div>
+                <h4 className="text-xl font-bold mb-2">Images</h4>
+                <p className="text-sm text-muted">
+                  Blueprints for containers. Downloaded from Docker Hub.
+                </p>
+              </Card>
+
+              <Card delay={0.2}>
+                <div className="text-4xl mb-3">🏃</div>
+                <h4 className="text-xl font-bold mb-2">Containers</h4>
+                <p className="text-sm text-muted">
+                  Running instances of images. Isolated processes.
+                </p>
+              </Card>
+
+              <Card delay={0.3}>
+                <div className="text-4xl mb-3">💾</div>
+                <h4 className="text-xl font-bold mb-2">Volumes</h4>
+                <p className="text-sm text-muted">
+                  Persistent storage that survives container restarts.
+                </p>
+              </Card>
+
+              <Card delay={0.4}>
+                <div className="text-4xl mb-3">🔗</div>
+                <h4 className="text-xl font-bold mb-2">Networks</h4>
+                <p className="text-sm text-muted">
+                  How containers talk to each other and the outside world.
+                </p>
+              </Card>
+            </div>
+
+            <Card delay={0.5} className="border-secondary/30 bg-card">
+              <h4 className="text-2xl font-bold text-secondary mb-3">Docker Compose</h4>
+              <p className="text-muted mb-4">
+                Define multi-container apps in a single YAML file. One command to start everything.
+              </p>
+              <pre className="bg-background rounded-lg p-4 text-sm overflow-x-auto">
+                <code className="text-primary">{`version: '3.8'
+services:
+  web:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./html:/usr/share/nginx/html`}</code>
+              </pre>
+            </Card>
+          </div>
         </Section>
         <Section id="services">
           <h2 className="text-4xl font-bold text-center">Cool Services</h2>
