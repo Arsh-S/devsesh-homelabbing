@@ -3,9 +3,56 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --background: 142 40% 5%;
+    --foreground: 0 0% 98%;
+    --card: 142 30% 9%;
+    --card-hover: 142 30% 12%;
+    --border: 142 20% 18%;
+    --border-subtle: 142 15% 14%;
+    --primary: 142 72% 48%;
+    --primary-foreground: 142 80% 10%;
+    --secondary: 217 90% 60%;
+    --accent: 160 60% 40%;
+    --destructive: 0 84% 60%;
+    --muted: 142 10% 60%;
+    --muted-foreground: 142 8% 45%;
+    --radius: 0.75rem;
+
+    /* Font families */
+    --font-display: 'Space Grotesk', system-ui, sans-serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
   body {
-    @apply bg-background text-white;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+    font-feature-settings: 'ss01' on, 'ss02' on;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+    color: hsl(var(--foreground));
+  }
+
+  p, span, label {
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  code, pre {
+    font-family: var(--font-mono);
   }
 }
 
@@ -26,4 +73,60 @@
 
 .snap-start {
   scroll-snap-align: start;
+}
+
+/* Card styles */
+@layer components {
+  .glass-card {
+    @apply bg-card/50 backdrop-blur-xl rounded-2xl border border-border/50;
+    box-shadow:
+      0 0 0 1px hsl(var(--border-subtle)),
+      0 4px 24px -4px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300;
+  }
+
+  .glass-card-hover:hover {
+    @apply bg-card-hover/60 border-border;
+    box-shadow:
+      0 0 0 1px hsl(var(--border)),
+      0 8px 32px -4px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+    transform: translateY(-2px);
+  }
+
+  /* Badge/pill styles */
+  .badge {
+    @apply inline-flex items-center px-3 py-1.5 text-sm font-medium rounded-full;
+    @apply bg-card/60 border border-border/50 backdrop-blur-sm;
+  }
+
+  .badge-primary {
+    @apply badge bg-primary/15 text-primary border-primary/30;
+  }
+
+  /* Code block styles */
+  .code-block {
+    @apply glass-card p-6 font-mono text-sm leading-relaxed overflow-x-auto;
+  }
+
+  /* Section accent colors */
+  .accent-purple { --section-accent: 280 70% 55%; }
+  .accent-red { --section-accent: 0 75% 55%; }
+  .accent-green { --section-accent: 142 70% 50%; }
+  .accent-cyan { --section-accent: 190 80% 50%; }
+  .accent-orange { --section-accent: 30 85% 55%; }
+  .accent-pink { --section-accent: 330 75% 55%; }
+  .accent-yellow { --section-accent: 45 90% 55%; }
+  .accent-sky { --section-accent: 200 85% 55%; }
+  .accent-emerald { --section-accent: 160 70% 45%; }
+}
+
+/* Smooth text rendering */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

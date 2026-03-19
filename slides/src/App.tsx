@@ -1,18 +1,67 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
-import { Section } from './components/Section'
-import { NavBar } from './components/NavBar'
-import { Card } from './components/Card'
+import { EtherealShadow } from './components/ui/ethereal-shadow'
+import { CopyableCode, CopyableLink } from './components/ui/copy-button'
+import { ChevronDown } from 'lucide-react'
+
+const PRESENTATION_URL = window.location.href.split('?')[0];
 
 const NAV_ITEMS = [
   { id: 'home', label: 'Home' },
-  { id: 'what-why', label: 'What & Why' },
-  { id: 'how-it-works', label: 'How it Works' },
-  { id: 'docker', label: 'Docker' },
-  { id: 'services', label: 'Services' },
-  { id: 'get-started', label: 'Get Started' },
+  { id: 'what-is-it', label: 'What' },
+  { id: 'why-privacy', label: 'Privacy' },
+  { id: 'why-money', label: 'Money' },
+  { id: 'why-learn', label: 'Learn' },
+  { id: 'hardware-intro', label: 'Hardware' },
+  { id: 'hardware-mac', label: 'Mac?' },
+  { id: 'hardware-options', label: 'Options' },
+  { id: 'networking', label: 'Networking' },
+  { id: 'docker-intro', label: 'Docker' },
+  { id: 'docker-concepts', label: 'Concepts' },
+  { id: 'docker-compose', label: 'Compose' },
+  { id: 'services-media', label: 'Media' },
+  { id: 'services-gaming', label: 'Gaming' },
+  { id: 'services-photos', label: 'Photos' },
+  { id: 'services-dev', label: 'Dev' },
+  { id: 'services-deploy', label: 'Deploy' },
+  { id: 'services-productivity', label: 'Docs' },
+  { id: 'services-network', label: 'Network' },
+  { id: 'services-ai', label: 'AI' },
+  { id: 'services-security', label: 'Security' },
+  { id: 'services-more', label: 'More' },
+  { id: 'resources', label: 'Resources' },
   { id: 'activity', label: 'Activity' },
+  { id: 'activity-steps', label: 'Steps' },
 ];
+
+function Slide({ id, children }: { id: string; children: React.ReactNode }) {
+  return (
+    <section
+      id={id}
+      className="h-screen w-full snap-start flex items-center justify-center px-6 md:px-12 lg:px-16 relative z-10"
+    >
+      <div className="max-w-5xl w-full">
+        {children}
+      </div>
+    </section>
+  );
+}
+
+function SectionCard({
+  children,
+  className = '',
+  accentColor = 'border-border/50'
+}: {
+  children: React.ReactNode;
+  className?: string;
+  accentColor?: string;
+}) {
+  return (
+    <div className={`glass-card-hover p-8 ${accentColor} ${className}`}>
+      {children}
+    </div>
+  );
+}
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -52,473 +101,734 @@ function App() {
   };
 
   return (
-    <div className="relative min-h-screen">
-      <NavBar
-        items={NAV_ITEMS}
-        activeSection={activeSection}
-        onNavigate={scrollToSection}
-      />
+    <EtherealShadow
+      color="rgba(34, 197, 94, 0.9)"
+      animation={{ scale: 100, speed: 95 }}
+      noise={{ opacity: 0.2, scale: 1 }}
+      sizing="fill"
+      className="min-h-screen"
+    >
+      {/* Navigation */}
+      <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
+        <div className="flex gap-0.5 px-1.5 py-1 bg-card/70 backdrop-blur-xl rounded-full border border-border/40 overflow-x-auto max-w-[95vw]">
+          {NAV_ITEMS.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => scrollToSection(item.id)}
+              className={`px-2.5 py-1.5 text-xs font-medium rounded-full transition-all duration-200 whitespace-nowrap ${
+                activeSection === item.id
+                  ? 'bg-primary text-primary-foreground shadow-sm'
+                  : 'text-muted hover:text-foreground hover:bg-white/5'
+              }`}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+      </nav>
 
+      {/* Slides Container */}
       <div
         ref={scrollContainerRef}
-        className="h-screen overflow-y-scroll snap-y scrollbar-hide"
+        className="h-screen w-full overflow-y-scroll snap-y scrollbar-hide"
       >
-        <Section id="home">
-          <div className="text-center space-y-8">
+        {/* SLIDE 1: Title */}
+        <Slide id="home">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="text-center"
+          >
+            <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter mb-6">
+              Homelabbing
+            </h1>
+            <p className="text-2xl md:text-3xl lg:text-4xl font-medium text-primary mb-4 tracking-tight">
+              Self-Host Everything
+            </p>
+            <p className="text-lg md:text-xl text-muted mb-12">
+              Presented by <span className="text-foreground font-medium">Arsh</span> & <span className="text-foreground font-medium">Ben</span>
+            </p>
+
+            {/* Follow along instructions */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="glass-card p-8 max-w-md mx-auto"
             >
-              <h1 className="text-7xl md:text-8xl font-black tracking-tight text-white mb-4">
-                Homelabbing
-              </h1>
-              <h2 className="text-4xl md:text-5xl font-bold text-primary">
-                Self-Host Everything
-              </h2>
+              <p className="text-base text-muted mb-4 font-medium">Follow along on your device</p>
+              <div className="flex items-center justify-center">
+                <CopyableLink url={PRESENTATION_URL} label="Copy presentation link" />
+              </div>
+              <p className="text-sm text-muted/70 mt-4">or scan the QR code</p>
             </motion.div>
 
-            <motion.p
+            {/* Scroll indicator */}
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-xl text-muted max-w-2xl mx-auto"
+              transition={{ delay: 1, duration: 0.5 }}
+              className="absolute bottom-8 left-1/2 -translate-x-1/2"
             >
-              Take control of your data, learn new skills, and run your own services
-            </motion.p>
-          </div>
-        </Section>
-        <Section id="what-why">
-          <div className="space-y-8">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-6xl font-bold text-center"
-            >
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <ChevronDown className="w-6 h-6 text-muted/50" />
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </Slide>
+
+        {/* SLIDE 2: What is it? */}
+        <Slide id="what-is-it">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-10"
+          >
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               What is <span className="text-primary">Homelabbing</span>?
-            </motion.h2>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              <Card delay={0}>
-                <h3 className="text-2xl font-bold text-primary mb-3">Privacy First</h3>
-                <p className="text-muted leading-relaxed">
-                  Your data stays on your hardware. No tech giants tracking everything you do.
-                </p>
-              </Card>
-
-              <Card delay={0.1}>
-                <h3 className="text-2xl font-bold text-secondary mb-3">Save Money</h3>
-                <p className="text-muted leading-relaxed">
-                  Stop paying monthly subscriptions. One-time hardware cost, unlimited services.
-                </p>
-              </Card>
-
-              <Card delay={0.2}>
-                <h3 className="text-2xl font-bold text-destructive mb-3">Learn & Grow</h3>
-                <p className="text-muted leading-relaxed">
-                  Master Docker, networking, Linux, and infrastructure - real-world skills.
-                </p>
-              </Card>
+            </h2>
+            <p className="text-2xl md:text-3xl text-muted leading-relaxed max-w-3xl mx-auto font-light">
+              Running your own servers and services on hardware
+              <span className="text-foreground font-medium"> you control</span>
+            </p>
+            <div className="text-5xl md:text-6xl pt-4 opacity-90">
+              🏠 + 🖥️ = ✨
             </div>
+          </motion.div>
+        </Slide>
 
-            <Card delay={0.3} className="border-primary/30">
-              <p className="text-xl text-center">
-                <span className="font-bold text-primary">Self-hosting</span> means running your own
-                services (media servers, cloud storage, dev tools) on hardware you control.
-              </p>
-            </Card>
-          </div>
-        </Section>
-        <Section id="how-it-works">
-          <div className="space-y-8">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-6xl font-bold text-center mb-12"
-            >
-              How Does it <span className="text-primary">Work</span>?
-            </motion.h2>
+        {/* SLIDE 3: Why - Privacy */}
+        <Slide id="why-privacy">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-8"
+          >
+            <div className="text-7xl md:text-8xl">🔒</div>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+              Your Data, <span className="text-primary">Your Rules</span>
+            </h2>
+            <p className="text-2xl md:text-3xl text-muted leading-relaxed max-w-3xl mx-auto font-light">
+              No more Big Tech tracking your photos, messages, and files
+            </p>
+          </motion.div>
+        </Slide>
 
-            <div className="grid lg:grid-cols-2 gap-8">
-              <Card delay={0}>
-                <h3 className="text-3xl font-bold text-primary mb-4">Hardware Options</h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <span className="text-primary mt-1">💻</span>
-                    <div>
-                      <p className="font-semibold">Old Laptop/Desktop</p>
-                      <p className="text-sm text-muted">Free! Repurpose old hardware</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-primary mt-1">🥧</span>
-                    <div>
-                      <p className="font-semibold">Raspberry Pi</p>
-                      <p className="text-sm text-muted">~$50-100, low power consumption</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-primary mt-1">🖥️</span>
-                    <div>
-                      <p className="font-semibold">Mini PC (Intel NUC)</p>
-                      <p className="text-sm text-muted">More power, still compact</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-primary mt-1">☁️</span>
-                    <div>
-                      <p className="font-semibold">Cloud VPS</p>
-                      <p className="text-sm text-muted">DigitalOcean, Hetzner, Linode</p>
-                    </div>
-                  </li>
-                </ul>
-              </Card>
+        {/* SLIDE 4: Why - Save Money */}
+        <Slide id="why-money">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-8"
+          >
+            <div className="text-7xl md:text-8xl">💰</div>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+              <span className="text-primary">Stop</span> Paying Subscriptions
+            </h2>
+            <p className="text-2xl md:text-3xl text-muted leading-relaxed max-w-3xl mx-auto font-light">
+              One-time hardware cost, unlimited services forever
+            </p>
+          </motion.div>
+        </Slide>
 
-              <Card delay={0.2}>
-                <h3 className="text-3xl font-bold text-secondary mb-4">Networking Basics</h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <span className="text-secondary mt-1">🔌</span>
-                    <div>
-                      <p className="font-semibold">Ports</p>
-                      <p className="text-sm text-muted">Different services use different ports (80, 443, 3000, etc.)</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-secondary mt-1">🏠</span>
-                    <div>
-                      <p className="font-semibold">Local vs Public Access</p>
-                      <p className="text-sm text-muted">Access from home network or expose to internet</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-secondary mt-1">🔀</span>
-                    <div>
-                      <p className="font-semibold">Reverse Proxy</p>
-                      <p className="text-sm text-muted">Nginx, Caddy, Traefik route traffic to services</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-secondary mt-1">🌐</span>
-                    <div>
-                      <p className="font-semibold">Dynamic DNS & Domains</p>
-                      <p className="text-sm text-muted">Access via custom domain name</p>
-                    </div>
-                  </li>
-                </ul>
-              </Card>
+        {/* SLIDE 5: Why - Learn Skills */}
+        <Slide id="why-learn">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-10"
+          >
+            <div className="text-7xl md:text-8xl">🚀</div>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+              Build <span className="text-primary">Real Skills</span>
+            </h2>
+            <div className="flex flex-wrap justify-center gap-3">
+              {['Docker', 'Linux', 'Networking', 'DevOps'].map((skill) => (
+                <span key={skill} className="badge text-lg md:text-xl">
+                  {skill}
+                </span>
+              ))}
             </div>
-          </div>
-        </Section>
-        <Section id="docker">
-          <div className="space-y-8">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-6xl font-bold text-center mb-12"
-            >
+          </motion.div>
+        </Slide>
+
+        {/* SLIDE 6: Hardware Intro */}
+        <Slide id="hardware-intro">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-8"
+          >
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+              What <span className="text-primary">Hardware</span> Do I Need?
+            </h2>
+            <p className="text-2xl md:text-3xl text-muted font-light">
+              Spoiler: You probably already have something
+            </p>
+            <div className="text-5xl md:text-6xl pt-4 flex justify-center gap-4">
+              <span>💻</span>
+              <span>🥧</span>
+              <span>🖥️</span>
+              <span>☁️</span>
+            </div>
+          </motion.div>
+        </Slide>
+
+        {/* SLIDE 7: Mac Mini Joke */}
+        <Slide id="hardware-mac">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-8"
+          >
+            <div className="text-7xl md:text-8xl">🍎</div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+              You do <span className="text-destructive">NOT</span> need a Mac Mini
+            </h2>
+            <p className="text-2xl md:text-3xl text-muted font-light">
+              ...but it <span className="text-foreground italic">is</span> a pretty good option
+            </p>
+            <p className="text-xl text-primary/80">
+              (ARM is efficient & macOS runs Docker great)
+            </p>
+          </motion.div>
+        </Slide>
+
+        {/* SLIDE 8: Hardware Options */}
+        <Slide id="hardware-options">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="space-y-10"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center tracking-tight">
+              Hardware <span className="text-primary">Options</span>
+            </h2>
+            <div className="grid md:grid-cols-2 gap-5">
+              {[
+                { icon: '💻', title: 'Old Laptop', desc: 'Free! Repurpose what you have' },
+                { icon: '🥧', title: 'Raspberry Pi', desc: '~$50-100, tiny & efficient' },
+                { icon: '🖥️', title: 'Mini PC', desc: 'Intel NUC, more powerful' },
+                { icon: '☁️', title: 'Cloud VPS', desc: 'DigitalOcean, Hetzner, Linode' },
+              ].map((item) => (
+                <SectionCard key={item.title}>
+                  <div className="text-4xl mb-3">{item.icon}</div>
+                  <h3 className="text-2xl font-semibold mb-2">{item.title}</h3>
+                  <p className="text-lg text-muted">{item.desc}</p>
+                </SectionCard>
+              ))}
+            </div>
+          </motion.div>
+        </Slide>
+
+        {/* SLIDE 9: Networking Basics */}
+        <Slide id="networking">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="space-y-10"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center tracking-tight">
+              Networking <span className="text-secondary">Basics</span>
+            </h2>
+            <div className="grid md:grid-cols-2 gap-5">
+              {[
+                { icon: '🔌', title: 'Ports', desc: 'Different doors for different services (80, 443, 3000...)' },
+                { icon: '🏠', title: 'Local Access', desc: 'Access from your home network only' },
+                { icon: '🔀', title: 'Reverse Proxy', desc: 'Route traffic to the right service' },
+                { icon: '🌐', title: 'Domains', desc: 'mysite.home.local or real domains' },
+              ].map((item) => (
+                <SectionCard key={item.title} accentColor="border-secondary/20">
+                  <h3 className="text-2xl font-semibold text-secondary mb-2">{item.icon} {item.title}</h3>
+                  <p className="text-lg text-muted">{item.desc}</p>
+                </SectionCard>
+              ))}
+            </div>
+          </motion.div>
+        </Slide>
+
+        {/* SLIDE 10: Docker Intro */}
+        <Slide id="docker-intro">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-8"
+          >
+            <div className="text-7xl md:text-8xl">🐳</div>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               <span className="text-primary">Docker</span> 101
-            </motion.h2>
+            </h2>
+            <p className="text-2xl md:text-3xl text-muted leading-relaxed max-w-4xl mx-auto font-light">
+              Package your app with <span className="text-foreground font-medium">everything it needs</span> — runs the same everywhere
+            </p>
+          </motion.div>
+        </Slide>
 
-            <Card delay={0} className="border-primary/30">
-              <h3 className="text-3xl font-bold text-primary mb-4">What is Docker?</h3>
-              <p className="text-lg text-muted leading-relaxed">
-                Docker packages your app with everything it needs (code, dependencies, config)
-                into a <span className="text-white font-semibold">container</span> that runs
-                the same everywhere.
-              </p>
-            </Card>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Card delay={0.1}>
-                <div className="text-4xl mb-3">📦</div>
-                <h4 className="text-xl font-bold mb-2">Images</h4>
-                <p className="text-sm text-muted">
-                  Blueprints for containers. Downloaded from Docker Hub.
-                </p>
-              </Card>
-
-              <Card delay={0.2}>
-                <div className="text-4xl mb-3">🏃</div>
-                <h4 className="text-xl font-bold mb-2">Containers</h4>
-                <p className="text-sm text-muted">
-                  Running instances of images. Isolated processes.
-                </p>
-              </Card>
-
-              <Card delay={0.3}>
-                <div className="text-4xl mb-3">💾</div>
-                <h4 className="text-xl font-bold mb-2">Volumes</h4>
-                <p className="text-sm text-muted">
-                  Persistent storage that survives container restarts.
-                </p>
-              </Card>
-
-              <Card delay={0.4}>
-                <div className="text-4xl mb-3">🔗</div>
-                <h4 className="text-xl font-bold mb-2">Networks</h4>
-                <p className="text-sm text-muted">
-                  How containers talk to each other and the outside world.
-                </p>
-              </Card>
+        {/* SLIDE 11: Docker Concepts */}
+        <Slide id="docker-concepts">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="space-y-10"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center tracking-tight">
+              Key <span className="text-primary">Concepts</span>
+            </h2>
+            <div className="grid md:grid-cols-2 gap-5">
+              {[
+                { icon: '📦', title: 'Images', desc: 'The blueprint' },
+                { icon: '🏃', title: 'Containers', desc: 'Running instances' },
+                { icon: '💾', title: 'Volumes', desc: 'Persistent storage' },
+                { icon: '🔗', title: 'Networks', desc: 'Container communication' },
+              ].map((item) => (
+                <SectionCard key={item.title} className="text-center">
+                  <div className="text-4xl mb-3">{item.icon}</div>
+                  <h3 className="text-2xl font-semibold mb-2">{item.title}</h3>
+                  <p className="text-lg text-muted">{item.desc}</p>
+                </SectionCard>
+              ))}
             </div>
+          </motion.div>
+        </Slide>
 
-            <Card delay={0.5} className="border-secondary/30 bg-card">
-              <h4 className="text-2xl font-bold text-secondary mb-3">Docker Compose</h4>
-              <p className="text-muted mb-4">
-                Define multi-container apps in a single YAML file. One command to start everything.
+        {/* SLIDE 12: Docker Compose */}
+        <Slide id="docker-compose">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="space-y-8"
+          >
+            <div className="text-center">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+                Docker <span className="text-primary">Compose</span>
+              </h2>
+              <p className="text-xl text-muted mt-3">
+                Define everything in one YAML file
               </p>
-              <pre className="bg-background rounded-lg p-4 text-sm overflow-x-auto">
-                <code className="text-primary">{`version: '3.8'
-services:
-  web:
-    image: nginx
+            </div>
+            <div className="glass-card p-6 relative group">
+              <CopyableCode
+                code={`services:\n  uptime-kuma:\n    image: louislam/uptime-kuma:1\n    ports:\n      - "3001:3001"\n    volumes:\n      - data:/app/data\n\nvolumes:\n  data:`}
+                className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity"
+              />
+              <pre className="text-base md:text-lg overflow-x-auto font-mono">
+                <code className="text-primary/90">{`services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
     ports:
-      - "80:80"
+      - "3001:3001"
     volumes:
-      - ./html:/usr/share/nginx/html`}</code>
+      - data:/app/data
+
+volumes:
+  data:`}</code>
               </pre>
-            </Card>
-          </div>
-        </Section>
-        <Section id="services">
-          <div className="space-y-8">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-6xl font-bold text-center mb-12"
-            >
-              Cool Services to <span className="text-primary">Self-Host</span>
-            </motion.h2>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              <Card delay={0} className="border-purple-500/30">
-                <h3 className="text-3xl font-bold text-purple-400 mb-4">📺 Media Servers</h3>
-                <div className="space-y-3">
-                  <div>
-                    <p className="font-semibold text-lg">Plex / Jellyfin</p>
-                    <p className="text-sm text-muted">Stream your movies and TV shows anywhere</p>
-                    <p className="text-xs text-muted mt-1">⭐ Easy setup</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-lg">Navidrome</p>
-                    <p className="text-sm text-muted">Your own Spotify for music you own</p>
-                    <p className="text-xs text-muted mt-1">⭐ Easy setup</p>
-                  </div>
-                </div>
-              </Card>
-
-              <Card delay={0.1} className="border-blue-500/30">
-                <h3 className="text-3xl font-bold text-blue-400 mb-4">🛠️ Dev Tools</h3>
-                <div className="space-y-3">
-                  <div>
-                    <p className="font-semibold text-lg">Uptime Kuma</p>
-                    <p className="text-sm text-muted">Monitor your websites and get alerts</p>
-                    <p className="text-xs text-muted mt-1">⭐ We'll use this today!</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-lg">code-server</p>
-                    <p className="text-sm text-muted">VS Code in your browser, code from anywhere</p>
-                    <p className="text-xs text-muted mt-1">⭐⭐ Medium difficulty</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-lg">Gitea / Hoppscotch</p>
-                    <p className="text-sm text-muted">Self-hosted Git repos and API testing</p>
-                    <p className="text-xs text-muted mt-1">⭐ Easy setup</p>
-                  </div>
-                </div>
-              </Card>
-
-              <Card delay={0.2} className="border-green-500/30">
-                <h3 className="text-3xl font-bold text-green-400 mb-4">📸 Photos & Files</h3>
-                <div className="space-y-3">
-                  <div>
-                    <p className="font-semibold text-lg">Immich</p>
-                    <p className="text-sm text-muted">Google Photos alternative with AI features</p>
-                    <p className="text-xs text-muted mt-1">⭐⭐ Medium difficulty</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-lg">Nextcloud</p>
-                    <p className="text-sm text-muted">Complete Google Drive replacement</p>
-                    <p className="text-xs text-muted mt-1">⭐⭐⭐ More complex</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-lg">Syncthing</p>
-                    <p className="text-sm text-muted">Sync files between devices, no cloud</p>
-                    <p className="text-xs text-muted mt-1">⭐ Easy setup</p>
-                  </div>
-                </div>
-              </Card>
-
-              <Card delay={0.3} className="border-yellow-500/30">
-                <h3 className="text-3xl font-bold text-yellow-400 mb-4">⚡ Productivity & More</h3>
-                <div className="space-y-3">
-                  <div>
-                    <p className="font-semibold text-lg">Outline / Bookstack</p>
-                    <p className="text-sm text-muted">Team wikis and documentation</p>
-                    <p className="text-xs text-muted mt-1">⭐⭐ Medium difficulty</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-lg">n8n</p>
-                    <p className="text-sm text-muted">Workflow automation like Zapier</p>
-                    <p className="text-xs text-muted mt-1">⭐⭐ Medium difficulty</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-lg">Home Assistant</p>
-                    <p className="text-sm text-muted">Automate your entire smart home</p>
-                    <p className="text-xs text-muted mt-1">⭐⭐⭐ Complex but powerful</p>
-                  </div>
-                </div>
-              </Card>
             </div>
-          </div>
-        </Section>
-        <Section id="get-started">
-          <div className="space-y-8">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-6xl font-bold text-center mb-12"
-            >
-              Ready to <span className="text-primary">Get Started</span>?
-            </motion.h2>
+            <p className="text-xl text-center text-muted">
+              One command: <code className="text-primary font-mono bg-card/60 px-3 py-1.5 rounded-lg">docker compose up -d</code>
+            </p>
+          </motion.div>
+        </Slide>
 
-            <div className="grid md:grid-cols-2 gap-8">
-              <Card delay={0}>
-                <h3 className="text-3xl font-bold text-primary mb-4">📚 Resources</h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <span className="text-primary mt-1">→</span>
-                    <div>
-                      <p className="font-semibold">awesome-selfhosted</p>
-                      <p className="text-sm text-muted">GitHub repo with 1000+ services</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-primary mt-1">→</span>
-                    <div>
-                      <p className="font-semibold">r/selfhosted</p>
-                      <p className="text-sm text-muted">Active Reddit community</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-primary mt-1">→</span>
-                    <div>
-                      <p className="font-semibold">r/homelab</p>
-                      <p className="text-sm text-muted">Show off your setup</p>
-                    </div>
-                  </li>
-                </ul>
-              </Card>
-
-              <Card delay={0.2}>
-                <h3 className="text-3xl font-bold text-secondary mb-4">🎯 Start Small</h3>
-                <ol className="space-y-3">
-                  <li className="flex gap-3">
-                    <span className="font-bold text-secondary">1.</span>
-                    <div>
-                      <p className="font-semibold">Install Docker Desktop</p>
-                      <p className="text-sm text-muted">Available for Mac, Windows, Linux</p>
-                    </div>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-bold text-secondary">2.</span>
-                    <div>
-                      <p className="font-semibold">Try one service</p>
-                      <p className="text-sm text-muted">Start with something simple like Uptime Kuma</p>
-                    </div>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="font-bold text-secondary">3.</span>
-                    <div>
-                      <p className="font-semibold">Expand gradually</p>
-                      <p className="text-sm text-muted">Add more services as you learn</p>
-                    </div>
-                  </li>
-                </ol>
-              </Card>
+        {/* SLIDE 13: Media Services */}
+        <Slide id="services-media">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-10"
+          >
+            <div className="text-7xl md:text-8xl">📺</div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+              <span className="text-purple-400">Media</span> Servers
+            </h2>
+            <div className="grid md:grid-cols-2 gap-5 text-left">
+              <SectionCard accentColor="border-purple-500/25">
+                <h3 className="text-2xl font-semibold mb-2">Plex / Jellyfin</h3>
+                <p className="text-lg text-muted">Stream your movies and TV anywhere</p>
+                <p className="text-base text-primary mt-2">Like your own Netflix!</p>
+              </SectionCard>
+              <SectionCard accentColor="border-purple-500/25">
+                <h3 className="text-2xl font-semibold mb-2">Navidrome</h3>
+                <p className="text-lg text-muted">Your music library, streamed</p>
+                <p className="text-base text-primary mt-2">Your own Spotify!</p>
+              </SectionCard>
             </div>
+          </motion.div>
+        </Slide>
 
-            <Card delay={0.4} className="border-primary/50 text-center">
-              <p className="text-2xl font-bold text-primary">
-                Let's try it hands-on! →
-              </p>
-            </Card>
-          </div>
-        </Section>
-        <Section id="activity">
-          <div className="space-y-8">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-6xl font-bold text-center mb-12"
-            >
-              Hands-on <span className="text-primary">Activity</span>
-            </motion.h2>
-
-            <Card delay={0} className="border-primary/50">
-              <h3 className="text-4xl font-bold text-primary mb-4 text-center">
-                Deploy Uptime Kuma
-              </h3>
-              <p className="text-xl text-center text-muted">
-                Monitor your websites in 5 minutes
-              </p>
-            </Card>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <Card delay={0.1}>
-                <div className="text-4xl mb-3">1️⃣</div>
-                <h4 className="text-xl font-bold mb-2">Clone the repo</h4>
-                <pre className="bg-background rounded p-2 text-sm mt-3">
-                  <code className="text-primary">git clone &lt;repo-url&gt;</code>
-                </pre>
-                <p className="text-xs text-muted mt-2">Your instructor will provide the URL</p>
-              </Card>
-
-              <Card delay={0.2}>
-                <div className="text-4xl mb-3">2️⃣</div>
-                <h4 className="text-xl font-bold mb-2">Start the service</h4>
-                <pre className="bg-background rounded p-2 text-sm mt-3">
-                  <code className="text-primary">docker compose up -d</code>
-                </pre>
-              </Card>
-
-              <Card delay={0.3}>
-                <div className="text-4xl mb-3">3️⃣</div>
-                <h4 className="text-xl font-bold mb-2">Open in browser</h4>
-                <pre className="bg-background rounded p-2 text-sm mt-3">
-                  <code className="text-primary">localhost:3001</code>
-                </pre>
-              </Card>
-
-              <Card delay={0.4}>
-                <div className="text-4xl mb-3">4️⃣</div>
-                <h4 className="text-xl font-bold mb-2">Create account</h4>
-                <p className="text-sm text-muted mt-2">Set up your admin username and password</p>
-              </Card>
-
-              <Card delay={0.5}>
-                <div className="text-4xl mb-3">5️⃣</div>
-                <h4 className="text-xl font-bold mb-2">Add monitors</h4>
-                <p className="text-sm text-muted mt-2">Monitor your own websites and projects</p>
-              </Card>
-
-              <Card delay={0.6}>
-                <div className="text-4xl mb-3">6️⃣</div>
-                <h4 className="text-xl font-bold mb-2">Explore features</h4>
-                <p className="text-sm text-muted mt-2">Status pages, notifications, and more</p>
-              </Card>
+        {/* SLIDE 14: Gaming Servers */}
+        <Slide id="services-gaming">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-10"
+          >
+            <div className="text-7xl md:text-8xl">🎮</div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+              <span className="text-red-400">Gaming</span> Servers
+            </h2>
+            <div className="grid md:grid-cols-2 gap-5 text-left">
+              <SectionCard accentColor="border-red-500/25">
+                <h3 className="text-2xl font-semibold mb-2">Minecraft Server</h3>
+                <p className="text-lg text-muted">Host your own worlds with mods</p>
+                <p className="text-base text-primary mt-2">Play with friends, your rules!</p>
+              </SectionCard>
+              <SectionCard accentColor="border-red-500/25">
+                <h3 className="text-2xl font-semibold mb-2">Game Servers</h3>
+                <p className="text-lg text-muted">Valheim, Terraria, CS2, and more</p>
+                <p className="text-base text-primary mt-2">Zero latency, full control</p>
+              </SectionCard>
             </div>
+          </motion.div>
+        </Slide>
 
-            <Card delay={0.7} className="border-secondary/50 bg-card text-center">
-              <p className="text-xl text-muted">
-                Full instructions in the <span className="text-primary font-semibold">demo/</span> folder
-              </p>
-            </Card>
-          </div>
-        </Section>
+        {/* SLIDE 15: Photos */}
+        <Slide id="services-photos">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-10"
+          >
+            <div className="text-7xl md:text-8xl">📸</div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+              <span className="text-green-400">Immich</span>
+            </h2>
+            <p className="text-2xl text-muted font-light">The Google Photos killer</p>
+            <div className="grid md:grid-cols-3 gap-4 text-left">
+              {[
+                { icon: '📱', title: 'Mobile App', desc: 'Auto-backup from your phone' },
+                { icon: '🤖', title: 'AI Features', desc: 'Face recognition & search' },
+                { icon: '🗺️', title: 'Maps', desc: 'See photos by location' },
+              ].map((item) => (
+                <SectionCard key={item.title} accentColor="border-green-500/25" className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">{item.icon} {item.title}</h3>
+                  <p className="text-base text-muted">{item.desc}</p>
+                </SectionCard>
+              ))}
+            </div>
+          </motion.div>
+        </Slide>
+
+        {/* SLIDE 16: Dev Tools */}
+        <Slide id="services-dev">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-10"
+          >
+            <div className="text-7xl md:text-8xl">🛠️</div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+              <span className="text-secondary">Dev</span> Tools
+            </h2>
+            <div className="grid md:grid-cols-2 gap-4 text-left">
+              {[
+                { title: 'Supabase', desc: 'Self-host your entire backend', sub: 'Database + Auth + Storage + Realtime' },
+                { title: 'GitLab', desc: 'Complete DevOps platform', sub: 'Git + CI/CD + Registry' },
+                { title: 'Uptime Kuma', desc: 'Monitor your sites 24/7', sub: "We'll set this up today!" },
+                { title: 'code-server', desc: 'VS Code in your browser', sub: 'Code from anywhere' },
+              ].map((item) => (
+                <SectionCard key={item.title} accentColor="border-secondary/25" className="p-6">
+                  <h3 className="text-xl font-semibold mb-1">{item.title}</h3>
+                  <p className="text-base text-muted">{item.desc}</p>
+                  <p className="text-sm text-primary mt-1">{item.sub}</p>
+                </SectionCard>
+              ))}
+            </div>
+          </motion.div>
+        </Slide>
+
+        {/* SLIDE 17: Deploy Platforms */}
+        <Slide id="services-deploy">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-10"
+          >
+            <div className="text-7xl md:text-8xl">🚀</div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+              <span className="text-pink-400">Deploy</span> Platforms
+            </h2>
+            <SectionCard accentColor="border-pink-500/25" className="text-left max-w-2xl mx-auto">
+              <h3 className="text-3xl font-bold mb-4">Coolify</h3>
+              <p className="text-xl text-muted mb-4">Self-hosted Vercel / Netlify / Heroku</p>
+              <ul className="space-y-2 text-lg text-muted">
+                <li className="flex items-center gap-2"><span className="text-pink-400">•</span> Deploy from Git with one click</li>
+                <li className="flex items-center gap-2"><span className="text-pink-400">•</span> Automatic SSL certificates</li>
+                <li className="flex items-center gap-2"><span className="text-pink-400">•</span> Database provisioning</li>
+                <li className="flex items-center gap-2"><span className="text-pink-400">•</span> Docker & Docker Compose support</li>
+              </ul>
+              <p className="text-base text-primary mt-4">Your own PaaS!</p>
+            </SectionCard>
+          </motion.div>
+        </Slide>
+
+        {/* SLIDE 18: Productivity */}
+        <Slide id="services-productivity">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-10"
+          >
+            <div className="text-7xl md:text-8xl">📝</div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+              <span className="text-emerald-400">Docs</span> & Writing
+            </h2>
+            <div className="grid md:grid-cols-2 gap-5 text-left">
+              <SectionCard accentColor="border-emerald-500/25">
+                <h3 className="text-2xl font-semibold mb-2">Overleaf</h3>
+                <p className="text-lg text-muted">Collaborative LaTeX editor</p>
+                <p className="text-base text-primary mt-2">Perfect for research papers!</p>
+              </SectionCard>
+              <SectionCard accentColor="border-emerald-500/25">
+                <h3 className="text-2xl font-semibold mb-2">Outline</h3>
+                <p className="text-lg text-muted">Beautiful team wiki</p>
+                <p className="text-base text-primary mt-2">Like Notion, self-hosted</p>
+              </SectionCard>
+            </div>
+          </motion.div>
+        </Slide>
+
+        {/* SLIDE 19: Network */}
+        <Slide id="services-network">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-10"
+          >
+            <div className="text-7xl md:text-8xl">🌐</div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+              <span className="text-sky-400">Network</span> Tools
+            </h2>
+            <SectionCard accentColor="border-sky-500/25" className="text-left max-w-2xl mx-auto">
+              <h3 className="text-3xl font-bold mb-4">AdGuard Home</h3>
+              <p className="text-xl text-muted mb-4">Network-wide ad & tracker blocking</p>
+              <ul className="space-y-2 text-lg text-muted">
+                <li className="flex items-center gap-2"><span className="text-sky-400">•</span> Block ads on ALL devices</li>
+                <li className="flex items-center gap-2"><span className="text-sky-400">•</span> No browser extensions needed</li>
+                <li className="flex items-center gap-2"><span className="text-sky-400">•</span> Parental controls</li>
+                <li className="flex items-center gap-2"><span className="text-sky-400">•</span> DNS-over-HTTPS support</li>
+              </ul>
+              <p className="text-base text-primary mt-4">Goodbye YouTube ads!</p>
+            </SectionCard>
+          </motion.div>
+        </Slide>
+
+        {/* SLIDE 20: AI Services */}
+        <Slide id="services-ai">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-10"
+          >
+            <div className="text-7xl md:text-8xl">🤖</div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+              <span className="text-cyan-400">AI</span> at Home
+            </h2>
+            <div className="grid md:grid-cols-2 gap-5 text-left">
+              <SectionCard accentColor="border-cyan-500/25">
+                <h3 className="text-2xl font-semibold mb-2">OpenClaw</h3>
+                <p className="text-lg text-muted">Self-host Claude and other LLMs</p>
+                <p className="text-base text-primary mt-2">Private AI conversations</p>
+              </SectionCard>
+              <SectionCard accentColor="border-cyan-500/25">
+                <h3 className="text-2xl font-semibold mb-2">Ollama + Open WebUI</h3>
+                <p className="text-lg text-muted">Run LLMs locally (Llama, Mistral)</p>
+                <p className="text-base text-primary mt-2">No API keys needed</p>
+              </SectionCard>
+            </div>
+          </motion.div>
+        </Slide>
+
+        {/* SLIDE 21: Security */}
+        <Slide id="services-security">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-10"
+          >
+            <div className="text-7xl md:text-8xl">🔐</div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+              <span className="text-orange-400">Security</span> Services
+            </h2>
+            <div className="grid md:grid-cols-2 gap-5 text-left">
+              <SectionCard accentColor="border-orange-500/25">
+                <h3 className="text-2xl font-semibold mb-2">Vaultwarden</h3>
+                <p className="text-lg text-muted">Self-hosted Bitwarden server</p>
+                <p className="text-base text-primary mt-2">Your passwords, your server</p>
+              </SectionCard>
+              <SectionCard accentColor="border-orange-500/25">
+                <h3 className="text-2xl font-semibold mb-2">Authelia</h3>
+                <p className="text-lg text-muted">Single sign-on for all services</p>
+                <p className="text-base text-primary mt-2">One login to rule them all</p>
+              </SectionCard>
+            </div>
+          </motion.div>
+        </Slide>
+
+        {/* SLIDE 22: More Services */}
+        <Slide id="services-more">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-10"
+          >
+            <div className="text-7xl md:text-8xl">⚡</div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+              <span className="text-yellow-400">And So Much</span> More...
+            </h2>
+            <div className="grid md:grid-cols-3 gap-4 text-left">
+              {[
+                { title: 'Home Assistant', desc: 'Smart home automation' },
+                { title: 'Nextcloud', desc: 'Google Drive alternative' },
+                { title: 'n8n', desc: 'Workflow automation' },
+              ].map((item) => (
+                <SectionCard key={item.title} accentColor="border-yellow-500/25" className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                  <p className="text-base text-muted">{item.desc}</p>
+                </SectionCard>
+              ))}
+            </div>
+            <p className="text-xl text-muted">
+              Check out <span className="text-primary font-medium">awesome-selfhosted</span> on GitHub!
+            </p>
+          </motion.div>
+        </Slide>
+
+        {/* SLIDE 23: Resources */}
+        <Slide id="resources">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-10"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+              <span className="text-primary">Resources</span> to Learn More
+            </h2>
+            <div className="grid md:grid-cols-3 gap-5">
+              {[
+                { icon: '📚', title: 'awesome-selfhosted', desc: '1000+ services on GitHub', url: 'https://github.com/awesome-selfhosted/awesome-selfhosted' },
+                { icon: '💬', title: 'r/selfhosted', desc: 'Active Reddit community', url: 'https://reddit.com/r/selfhosted' },
+                { icon: '🏠', title: 'r/homelab', desc: 'Show off your setup', url: 'https://reddit.com/r/homelab' },
+              ].map((item) => (
+                <SectionCard key={item.title} className="flex flex-col items-center text-center">
+                  <div className="text-4xl mb-4">{item.icon}</div>
+                  <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                  <p className="text-base text-muted mb-4">{item.desc}</p>
+                  <CopyableLink url={item.url} label="Open" />
+                </SectionCard>
+              ))}
+            </div>
+          </motion.div>
+        </Slide>
+
+        {/* SLIDE 24: Activity Intro */}
+        <Slide id="activity">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-8"
+          >
+            <div className="text-7xl md:text-8xl">🎯</div>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+              Hands-on <span className="text-primary">Time!</span>
+            </h2>
+            <p className="text-2xl md:text-3xl text-muted font-light">
+              Let's deploy <span className="text-foreground font-medium">Uptime Kuma</span> together
+            </p>
+            <p className="text-xl text-primary/80">
+              Monitor your websites in 5 minutes
+            </p>
+          </motion.div>
+        </Slide>
+
+        {/* SLIDE 25: Activity Steps */}
+        <Slide id="activity-steps">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="space-y-8"
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center tracking-tight">
+              <span className="text-primary">Quick Start</span> Steps
+            </h2>
+            <div className="space-y-4">
+              {[
+                { step: '1', title: 'Clone the repo', code: 'git clone https://github.com/your-org/homelabbing-demo' },
+                { step: '2', title: 'Enter directory & start', code: 'cd homelabbing-demo && docker compose up -d' },
+                { step: '3', title: 'Open in browser', code: 'http://localhost:3001' },
+              ].map((item) => (
+                <SectionCard key={item.step} className="flex items-center gap-6 p-5">
+                  <span className="text-3xl font-bold text-primary w-10 text-center">{item.step}</span>
+                  <div className="flex-1">
+                    <p className="text-lg font-medium mb-1">{item.title}</p>
+                    <CopyableCode code={item.code} />
+                  </div>
+                </SectionCard>
+              ))}
+              <SectionCard className="flex items-center gap-6 p-5">
+                <span className="text-3xl font-bold text-primary w-10 text-center">4</span>
+                <div className="flex-1">
+                  <p className="text-lg font-medium">Add monitors for your sites!</p>
+                  <span className="text-base text-muted">Track uptime for anything</span>
+                </div>
+              </SectionCard>
+            </div>
+          </motion.div>
+        </Slide>
       </div>
-    </div>
+    </EtherealShadow>
   )
 }
 
