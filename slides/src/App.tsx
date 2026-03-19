@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { EtherealShadow } from './components/ui/ethereal-shadow'
-import { CopyableCode, CopyableLink } from './components/ui/copy-button'
+import { CopyButton, CopyableCode, CopyableLink } from './components/ui/copy-button'
 import { ChevronDown } from 'lucide-react'
 
 const PRESENTATION_URL = window.location.href.split('?')[0];
@@ -143,11 +143,11 @@ function App() {
             <p className="text-2xl md:text-3xl text-primary font-medium mb-2 tracking-wide uppercase">
               DTI DevSesh
             </p>
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-4">
+            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-4 whitespace-nowrap">
               Homelabbing & Self-Hosting
             </h1>
             <p className="text-xl md:text-2xl text-muted mb-12">
-              Presented by <span className="text-foreground font-medium">Ben</span> and <span className="text-foreground font-medium">Arsh</span>
+              Presented by <span className="text-foreground font-medium">Arsh</span> and <span className="text-foreground font-medium">Ben</span>
             </p>
 
             {/* Follow along instructions */}
@@ -432,12 +432,8 @@ function App() {
                 Define everything in one YAML file
               </p>
             </div>
-            <div className="glass-card p-6 relative group">
-              <CopyableCode
-                code={`services:\n  uptime-kuma:\n    image: louislam/uptime-kuma:1\n    ports:\n      - "3001:3001"\n    volumes:\n      - data:/app/data\n\nvolumes:\n  data:`}
-                className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity"
-              />
-              <pre className="text-lg md:text-xl overflow-x-auto font-mono">
+            <div className="glass-card p-6 flex gap-4">
+              <pre className="text-lg md:text-xl overflow-x-auto font-mono flex-1">
                 <code className="text-primary/90">{`services:
   uptime-kuma:
     image: louislam/uptime-kuma:1
@@ -449,6 +445,16 @@ function App() {
 volumes:
   data:`}</code>
               </pre>
+              <CopyButton text={`services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    ports:
+      - "3001:3001"
+    volumes:
+      - data:/app/data
+
+volumes:
+  data:`} />
             </div>
             <p className="text-2xl text-center text-muted">
               One command: <code className="text-primary font-mono bg-card/60 px-3 py-1.5 rounded-lg">docker compose up -d</code>
