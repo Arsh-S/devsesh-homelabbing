@@ -140,14 +140,14 @@ function App() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="text-center"
           >
-            <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter mb-6">
-              Homelabbing
-            </h1>
-            <p className="text-2xl md:text-3xl lg:text-4xl font-medium text-primary mb-4 tracking-tight">
-              Self-Host Everything
+            <p className="text-2xl md:text-3xl text-primary font-medium mb-2 tracking-wide uppercase">
+              DTI DevSesh
             </p>
-            <p className="text-lg md:text-xl text-muted mb-12">
-              Presented by <span className="text-foreground font-medium">Arsh</span> & <span className="text-foreground font-medium">Ben</span>
+            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-4">
+              Homelabbing & Self-Hosting
+            </h1>
+            <p className="text-xl md:text-2xl text-muted mb-12">
+              Presented by <span className="text-foreground font-medium">Ben</span> and <span className="text-foreground font-medium">Arsh</span>
             </p>
 
             {/* Follow along instructions */}
@@ -155,13 +155,13 @@ function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="glass-card p-8 max-w-md mx-auto"
+              className="glass-card p-8 max-w-lg mx-auto"
             >
-              <p className="text-base text-muted mb-4 font-medium">Follow along on your device</p>
+              <p className="text-xl text-muted mb-4 font-medium">Follow along on your device</p>
               <div className="flex items-center justify-center">
                 <CopyableLink url={PRESENTATION_URL} label="Copy presentation link" />
               </div>
-              <p className="text-sm text-muted/70 mt-4">or scan the QR code</p>
+              <p className="text-lg text-muted/70 mt-4">or scan the QR code</p>
             </motion.div>
 
             {/* Scroll indicator */}
@@ -190,10 +190,10 @@ function App() {
             transition={{ duration: 0.6 }}
             className="text-center space-y-10"
           >
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+            <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
               What is <span className="text-primary">Homelabbing</span>?
             </h2>
-            <p className="text-2xl md:text-3xl text-muted leading-relaxed max-w-3xl mx-auto font-light">
+            <p className="text-3xl md:text-4xl text-muted leading-relaxed max-w-3xl mx-auto font-light">
               Running your own servers and services on hardware
               <span className="text-foreground font-medium"> you control</span>
             </p>
@@ -212,11 +212,11 @@ function App() {
             transition={{ duration: 0.6 }}
             className="text-center space-y-8"
           >
-            <div className="text-7xl md:text-8xl">🔒</div>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+            <div className="text-8xl md:text-9xl">🔒</div>
+            <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
               Your Data, <span className="text-primary">Your Rules</span>
             </h2>
-            <p className="text-2xl md:text-3xl text-muted leading-relaxed max-w-3xl mx-auto font-light">
+            <p className="text-3xl md:text-4xl text-muted leading-relaxed max-w-3xl mx-auto font-light">
               No more Big Tech tracking your photos, messages, and files
             </p>
           </motion.div>
@@ -231,11 +231,11 @@ function App() {
             transition={{ duration: 0.6 }}
             className="text-center space-y-8"
           >
-            <div className="text-7xl md:text-8xl">💰</div>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+            <div className="text-8xl md:text-9xl">💰</div>
+            <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
               <span className="text-primary">Stop</span> Paying Subscriptions
             </h2>
-            <p className="text-2xl md:text-3xl text-muted leading-relaxed max-w-3xl mx-auto font-light">
+            <p className="text-3xl md:text-4xl text-muted leading-relaxed max-w-3xl mx-auto font-light">
               One-time hardware cost, unlimited services forever
             </p>
           </motion.div>
@@ -250,13 +250,13 @@ function App() {
             transition={{ duration: 0.6 }}
             className="text-center space-y-10"
           >
-            <div className="text-7xl md:text-8xl">🚀</div>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+            <div className="text-8xl md:text-9xl">🚀</div>
+            <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
               Build <span className="text-primary">Real Skills</span>
             </h2>
-            <div className="flex flex-wrap justify-center gap-3">
+            <div className="flex flex-wrap justify-center gap-4">
               {['Docker', 'Linux', 'Networking', 'DevOps'].map((skill) => (
-                <span key={skill} className="badge text-lg md:text-xl">
+                <span key={skill} className="badge text-xl md:text-2xl">
                   {skill}
                 </span>
               ))}
@@ -273,13 +273,13 @@ function App() {
             transition={{ duration: 0.6 }}
             className="text-center space-y-8"
           >
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+            <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
               What <span className="text-primary">Hardware</span> Do I Need?
             </h2>
-            <p className="text-2xl md:text-3xl text-muted font-light">
+            <p className="text-3xl md:text-4xl text-muted font-light">
               Spoiler: You probably already have something
             </p>
-            <div className="text-5xl md:text-6xl pt-4 flex justify-center gap-4">
+            <div className="text-6xl md:text-7xl pt-4 flex justify-center gap-6">
               <span>💻</span>
               <span>🥧</span>
               <span>🖥️</span>
@@ -297,14 +297,14 @@ function App() {
             transition={{ duration: 0.6 }}
             className="text-center space-y-8"
           >
-            <div className="text-7xl md:text-8xl">🍎</div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+            <div className="text-8xl md:text-9xl">🍎</div>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               You do <span className="text-destructive">NOT</span> need a Mac Mini
             </h2>
-            <p className="text-2xl md:text-3xl text-muted font-light">
+            <p className="text-3xl md:text-4xl text-muted font-light">
               ...but it <span className="text-foreground italic">is</span> a pretty good option
             </p>
-            <p className="text-xl text-primary/80">
+            <p className="text-2xl text-primary/80">
               (ARM is efficient & macOS runs Docker great)
             </p>
           </motion.div>
@@ -319,7 +319,7 @@ function App() {
             transition={{ duration: 0.6 }}
             className="space-y-10"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center tracking-tight">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-center tracking-tight">
               Hardware <span className="text-primary">Options</span>
             </h2>
             <div className="grid md:grid-cols-2 gap-5">
@@ -330,9 +330,9 @@ function App() {
                 { icon: '☁️', title: 'Cloud VPS', desc: 'DigitalOcean, Hetzner, Linode' },
               ].map((item) => (
                 <SectionCard key={item.title}>
-                  <div className="text-4xl mb-3">{item.icon}</div>
-                  <h3 className="text-2xl font-semibold mb-2">{item.title}</h3>
-                  <p className="text-lg text-muted">{item.desc}</p>
+                  <div className="text-5xl mb-3">{item.icon}</div>
+                  <h3 className="text-3xl font-semibold mb-2">{item.title}</h3>
+                  <p className="text-xl text-muted">{item.desc}</p>
                 </SectionCard>
               ))}
             </div>
@@ -348,7 +348,7 @@ function App() {
             transition={{ duration: 0.6 }}
             className="space-y-10"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center tracking-tight">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-center tracking-tight">
               Networking <span className="text-secondary">Basics</span>
             </h2>
             <div className="grid md:grid-cols-2 gap-5">
@@ -359,8 +359,8 @@ function App() {
                 { icon: '🌐', title: 'Domains', desc: 'mysite.home.local or real domains' },
               ].map((item) => (
                 <SectionCard key={item.title} accentColor="border-secondary/20">
-                  <h3 className="text-2xl font-semibold text-secondary mb-2">{item.icon} {item.title}</h3>
-                  <p className="text-lg text-muted">{item.desc}</p>
+                  <h3 className="text-3xl font-semibold text-secondary mb-2">{item.icon} {item.title}</h3>
+                  <p className="text-xl text-muted">{item.desc}</p>
                 </SectionCard>
               ))}
             </div>
@@ -376,11 +376,11 @@ function App() {
             transition={{ duration: 0.6 }}
             className="text-center space-y-8"
           >
-            <div className="text-7xl md:text-8xl">🐳</div>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+            <div className="text-8xl md:text-9xl">🐳</div>
+            <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
               <span className="text-primary">Docker</span> 101
             </h2>
-            <p className="text-2xl md:text-3xl text-muted leading-relaxed max-w-4xl mx-auto font-light">
+            <p className="text-3xl md:text-4xl text-muted leading-relaxed max-w-4xl mx-auto font-light">
               Package your app with <span className="text-foreground font-medium">everything it needs</span> — runs the same everywhere
             </p>
           </motion.div>
@@ -395,7 +395,7 @@ function App() {
             transition={{ duration: 0.6 }}
             className="space-y-10"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center tracking-tight">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-center tracking-tight">
               Key <span className="text-primary">Concepts</span>
             </h2>
             <div className="grid md:grid-cols-2 gap-5">
@@ -406,9 +406,9 @@ function App() {
                 { icon: '🔗', title: 'Networks', desc: 'Container communication' },
               ].map((item) => (
                 <SectionCard key={item.title} className="text-center">
-                  <div className="text-4xl mb-3">{item.icon}</div>
-                  <h3 className="text-2xl font-semibold mb-2">{item.title}</h3>
-                  <p className="text-lg text-muted">{item.desc}</p>
+                  <div className="text-5xl mb-3">{item.icon}</div>
+                  <h3 className="text-3xl font-semibold mb-2">{item.title}</h3>
+                  <p className="text-xl text-muted">{item.desc}</p>
                 </SectionCard>
               ))}
             </div>
@@ -425,10 +425,10 @@ function App() {
             className="space-y-8"
           >
             <div className="text-center">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
                 Docker <span className="text-primary">Compose</span>
               </h2>
-              <p className="text-xl text-muted mt-3">
+              <p className="text-2xl text-muted mt-3">
                 Define everything in one YAML file
               </p>
             </div>
@@ -437,7 +437,7 @@ function App() {
                 code={`services:\n  uptime-kuma:\n    image: louislam/uptime-kuma:1\n    ports:\n      - "3001:3001"\n    volumes:\n      - data:/app/data\n\nvolumes:\n  data:`}
                 className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity"
               />
-              <pre className="text-base md:text-lg overflow-x-auto font-mono">
+              <pre className="text-lg md:text-xl overflow-x-auto font-mono">
                 <code className="text-primary/90">{`services:
   uptime-kuma:
     image: louislam/uptime-kuma:1
@@ -450,7 +450,7 @@ volumes:
   data:`}</code>
               </pre>
             </div>
-            <p className="text-xl text-center text-muted">
+            <p className="text-2xl text-center text-muted">
               One command: <code className="text-primary font-mono bg-card/60 px-3 py-1.5 rounded-lg">docker compose up -d</code>
             </p>
           </motion.div>
@@ -465,20 +465,20 @@ volumes:
             transition={{ duration: 0.6 }}
             className="text-center space-y-10"
           >
-            <div className="text-7xl md:text-8xl">📺</div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+            <div className="text-8xl md:text-9xl">📺</div>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               <span className="text-purple-400">Media</span> Servers
             </h2>
             <div className="grid md:grid-cols-2 gap-5 text-left">
               <SectionCard accentColor="border-purple-500/25">
-                <h3 className="text-2xl font-semibold mb-2">Plex / Jellyfin</h3>
-                <p className="text-lg text-muted">Stream your movies and TV anywhere</p>
-                <p className="text-base text-primary mt-2">Like your own Netflix!</p>
+                <h3 className="text-3xl font-semibold mb-2">Plex / Jellyfin</h3>
+                <p className="text-xl text-muted">Stream your movies and TV anywhere</p>
+                <p className="text-lg text-primary mt-2">Like your own Netflix!</p>
               </SectionCard>
               <SectionCard accentColor="border-purple-500/25">
-                <h3 className="text-2xl font-semibold mb-2">Navidrome</h3>
-                <p className="text-lg text-muted">Your music library, streamed</p>
-                <p className="text-base text-primary mt-2">Your own Spotify!</p>
+                <h3 className="text-3xl font-semibold mb-2">Navidrome</h3>
+                <p className="text-xl text-muted">Your music library, streamed</p>
+                <p className="text-lg text-primary mt-2">Your own Spotify!</p>
               </SectionCard>
             </div>
           </motion.div>
@@ -493,20 +493,20 @@ volumes:
             transition={{ duration: 0.6 }}
             className="text-center space-y-10"
           >
-            <div className="text-7xl md:text-8xl">🎮</div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+            <div className="text-8xl md:text-9xl">🎮</div>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               <span className="text-red-400">Gaming</span> Servers
             </h2>
             <div className="grid md:grid-cols-2 gap-5 text-left">
               <SectionCard accentColor="border-red-500/25">
-                <h3 className="text-2xl font-semibold mb-2">Minecraft Server</h3>
-                <p className="text-lg text-muted">Host your own worlds with mods</p>
-                <p className="text-base text-primary mt-2">Play with friends, your rules!</p>
+                <h3 className="text-3xl font-semibold mb-2">Minecraft Server</h3>
+                <p className="text-xl text-muted">Host your own worlds with mods</p>
+                <p className="text-lg text-primary mt-2">Play with friends, your rules!</p>
               </SectionCard>
               <SectionCard accentColor="border-red-500/25">
-                <h3 className="text-2xl font-semibold mb-2">Game Servers</h3>
-                <p className="text-lg text-muted">Valheim, Terraria, CS2, and more</p>
-                <p className="text-base text-primary mt-2">Zero latency, full control</p>
+                <h3 className="text-3xl font-semibold mb-2">Game Servers</h3>
+                <p className="text-xl text-muted">Valheim, Terraria, CS2, and more</p>
+                <p className="text-lg text-primary mt-2">Zero latency, full control</p>
               </SectionCard>
             </div>
           </motion.div>
@@ -521,11 +521,11 @@ volumes:
             transition={{ duration: 0.6 }}
             className="text-center space-y-10"
           >
-            <div className="text-7xl md:text-8xl">📸</div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+            <div className="text-8xl md:text-9xl">📸</div>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               <span className="text-green-400">Immich</span>
             </h2>
-            <p className="text-2xl text-muted font-light">The Google Photos killer</p>
+            <p className="text-3xl text-muted font-light">The Google Photos killer</p>
             <div className="grid md:grid-cols-3 gap-4 text-left">
               {[
                 { icon: '📱', title: 'Mobile App', desc: 'Auto-backup from your phone' },
@@ -533,8 +533,8 @@ volumes:
                 { icon: '🗺️', title: 'Maps', desc: 'See photos by location' },
               ].map((item) => (
                 <SectionCard key={item.title} accentColor="border-green-500/25" className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{item.icon} {item.title}</h3>
-                  <p className="text-base text-muted">{item.desc}</p>
+                  <h3 className="text-2xl font-semibold mb-2">{item.icon} {item.title}</h3>
+                  <p className="text-lg text-muted">{item.desc}</p>
                 </SectionCard>
               ))}
             </div>
@@ -550,8 +550,8 @@ volumes:
             transition={{ duration: 0.6 }}
             className="text-center space-y-10"
           >
-            <div className="text-7xl md:text-8xl">🛠️</div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+            <div className="text-8xl md:text-9xl">🛠️</div>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               <span className="text-secondary">Dev</span> Tools
             </h2>
             <div className="grid md:grid-cols-2 gap-4 text-left">
@@ -562,9 +562,9 @@ volumes:
                 { title: 'code-server', desc: 'VS Code in your browser', sub: 'Code from anywhere' },
               ].map((item) => (
                 <SectionCard key={item.title} accentColor="border-secondary/25" className="p-6">
-                  <h3 className="text-xl font-semibold mb-1">{item.title}</h3>
-                  <p className="text-base text-muted">{item.desc}</p>
-                  <p className="text-sm text-primary mt-1">{item.sub}</p>
+                  <h3 className="text-2xl font-semibold mb-1">{item.title}</h3>
+                  <p className="text-lg text-muted">{item.desc}</p>
+                  <p className="text-base text-primary mt-1">{item.sub}</p>
                 </SectionCard>
               ))}
             </div>
@@ -580,20 +580,20 @@ volumes:
             transition={{ duration: 0.6 }}
             className="text-center space-y-10"
           >
-            <div className="text-7xl md:text-8xl">🚀</div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+            <div className="text-8xl md:text-9xl">🚀</div>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               <span className="text-pink-400">Deploy</span> Platforms
             </h2>
             <SectionCard accentColor="border-pink-500/25" className="text-left max-w-2xl mx-auto">
-              <h3 className="text-3xl font-bold mb-4">Coolify</h3>
-              <p className="text-xl text-muted mb-4">Self-hosted Vercel / Netlify / Heroku</p>
-              <ul className="space-y-2 text-lg text-muted">
+              <h3 className="text-4xl font-bold mb-4">Coolify</h3>
+              <p className="text-2xl text-muted mb-4">Self-hosted Vercel / Netlify / Heroku</p>
+              <ul className="space-y-2 text-xl text-muted">
                 <li className="flex items-center gap-2"><span className="text-pink-400">•</span> Deploy from Git with one click</li>
                 <li className="flex items-center gap-2"><span className="text-pink-400">•</span> Automatic SSL certificates</li>
                 <li className="flex items-center gap-2"><span className="text-pink-400">•</span> Database provisioning</li>
                 <li className="flex items-center gap-2"><span className="text-pink-400">•</span> Docker & Docker Compose support</li>
               </ul>
-              <p className="text-base text-primary mt-4">Your own PaaS!</p>
+              <p className="text-lg text-primary mt-4">Your own PaaS!</p>
             </SectionCard>
           </motion.div>
         </Slide>
@@ -607,20 +607,20 @@ volumes:
             transition={{ duration: 0.6 }}
             className="text-center space-y-10"
           >
-            <div className="text-7xl md:text-8xl">📝</div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+            <div className="text-8xl md:text-9xl">📝</div>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               <span className="text-emerald-400">Docs</span> & Writing
             </h2>
             <div className="grid md:grid-cols-2 gap-5 text-left">
               <SectionCard accentColor="border-emerald-500/25">
-                <h3 className="text-2xl font-semibold mb-2">Overleaf</h3>
-                <p className="text-lg text-muted">Collaborative LaTeX editor</p>
-                <p className="text-base text-primary mt-2">Perfect for research papers!</p>
+                <h3 className="text-3xl font-semibold mb-2">Overleaf</h3>
+                <p className="text-xl text-muted">Collaborative LaTeX editor</p>
+                <p className="text-lg text-primary mt-2">Perfect for research papers!</p>
               </SectionCard>
               <SectionCard accentColor="border-emerald-500/25">
-                <h3 className="text-2xl font-semibold mb-2">Outline</h3>
-                <p className="text-lg text-muted">Beautiful team wiki</p>
-                <p className="text-base text-primary mt-2">Like Notion, self-hosted</p>
+                <h3 className="text-3xl font-semibold mb-2">Outline</h3>
+                <p className="text-xl text-muted">Beautiful team wiki</p>
+                <p className="text-lg text-primary mt-2">Like Notion, self-hosted</p>
               </SectionCard>
             </div>
           </motion.div>
@@ -635,20 +635,20 @@ volumes:
             transition={{ duration: 0.6 }}
             className="text-center space-y-10"
           >
-            <div className="text-7xl md:text-8xl">🌐</div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+            <div className="text-8xl md:text-9xl">🌐</div>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               <span className="text-sky-400">Network</span> Tools
             </h2>
             <SectionCard accentColor="border-sky-500/25" className="text-left max-w-2xl mx-auto">
-              <h3 className="text-3xl font-bold mb-4">AdGuard Home</h3>
-              <p className="text-xl text-muted mb-4">Network-wide ad & tracker blocking</p>
-              <ul className="space-y-2 text-lg text-muted">
+              <h3 className="text-4xl font-bold mb-4">AdGuard Home</h3>
+              <p className="text-2xl text-muted mb-4">Network-wide ad & tracker blocking</p>
+              <ul className="space-y-2 text-xl text-muted">
                 <li className="flex items-center gap-2"><span className="text-sky-400">•</span> Block ads on ALL devices</li>
                 <li className="flex items-center gap-2"><span className="text-sky-400">•</span> No browser extensions needed</li>
                 <li className="flex items-center gap-2"><span className="text-sky-400">•</span> Parental controls</li>
                 <li className="flex items-center gap-2"><span className="text-sky-400">•</span> DNS-over-HTTPS support</li>
               </ul>
-              <p className="text-base text-primary mt-4">Goodbye YouTube ads!</p>
+              <p className="text-lg text-primary mt-4">Goodbye YouTube ads!</p>
             </SectionCard>
           </motion.div>
         </Slide>
@@ -662,20 +662,20 @@ volumes:
             transition={{ duration: 0.6 }}
             className="text-center space-y-10"
           >
-            <div className="text-7xl md:text-8xl">🤖</div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+            <div className="text-8xl md:text-9xl">🤖</div>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               <span className="text-cyan-400">AI</span> at Home
             </h2>
             <div className="grid md:grid-cols-2 gap-5 text-left">
               <SectionCard accentColor="border-cyan-500/25">
-                <h3 className="text-2xl font-semibold mb-2">OpenClaw</h3>
-                <p className="text-lg text-muted">Self-host Claude and other LLMs</p>
-                <p className="text-base text-primary mt-2">Private AI conversations</p>
+                <h3 className="text-3xl font-semibold mb-2">OpenClaw</h3>
+                <p className="text-xl text-muted">Self-host Claude and other LLMs</p>
+                <p className="text-lg text-primary mt-2">Private AI conversations</p>
               </SectionCard>
               <SectionCard accentColor="border-cyan-500/25">
-                <h3 className="text-2xl font-semibold mb-2">Ollama + Open WebUI</h3>
-                <p className="text-lg text-muted">Run LLMs locally (Llama, Mistral)</p>
-                <p className="text-base text-primary mt-2">No API keys needed</p>
+                <h3 className="text-3xl font-semibold mb-2">Ollama + Open WebUI</h3>
+                <p className="text-xl text-muted">Run LLMs locally (Llama, Mistral)</p>
+                <p className="text-lg text-primary mt-2">No API keys needed</p>
               </SectionCard>
             </div>
           </motion.div>
@@ -690,20 +690,20 @@ volumes:
             transition={{ duration: 0.6 }}
             className="text-center space-y-10"
           >
-            <div className="text-7xl md:text-8xl">🔐</div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+            <div className="text-8xl md:text-9xl">🔐</div>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               <span className="text-orange-400">Security</span> Services
             </h2>
             <div className="grid md:grid-cols-2 gap-5 text-left">
               <SectionCard accentColor="border-orange-500/25">
-                <h3 className="text-2xl font-semibold mb-2">Vaultwarden</h3>
-                <p className="text-lg text-muted">Self-hosted Bitwarden server</p>
-                <p className="text-base text-primary mt-2">Your passwords, your server</p>
+                <h3 className="text-3xl font-semibold mb-2">Vaultwarden</h3>
+                <p className="text-xl text-muted">Self-hosted Bitwarden server</p>
+                <p className="text-lg text-primary mt-2">Your passwords, your server</p>
               </SectionCard>
               <SectionCard accentColor="border-orange-500/25">
-                <h3 className="text-2xl font-semibold mb-2">Authelia</h3>
-                <p className="text-lg text-muted">Single sign-on for all services</p>
-                <p className="text-base text-primary mt-2">One login to rule them all</p>
+                <h3 className="text-3xl font-semibold mb-2">Authelia</h3>
+                <p className="text-xl text-muted">Single sign-on for all services</p>
+                <p className="text-lg text-primary mt-2">One login to rule them all</p>
               </SectionCard>
             </div>
           </motion.div>
@@ -718,8 +718,8 @@ volumes:
             transition={{ duration: 0.6 }}
             className="text-center space-y-10"
           >
-            <div className="text-7xl md:text-8xl">⚡</div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+            <div className="text-8xl md:text-9xl">⚡</div>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               <span className="text-yellow-400">And So Much</span> More...
             </h2>
             <div className="grid md:grid-cols-3 gap-4 text-left">
@@ -729,12 +729,12 @@ volumes:
                 { title: 'n8n', desc: 'Workflow automation' },
               ].map((item) => (
                 <SectionCard key={item.title} accentColor="border-yellow-500/25" className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                  <p className="text-base text-muted">{item.desc}</p>
+                  <h3 className="text-2xl font-semibold mb-2">{item.title}</h3>
+                  <p className="text-lg text-muted">{item.desc}</p>
                 </SectionCard>
               ))}
             </div>
-            <p className="text-xl text-muted">
+            <p className="text-2xl text-muted">
               Check out <span className="text-primary font-medium">awesome-selfhosted</span> on GitHub!
             </p>
           </motion.div>
@@ -749,7 +749,7 @@ volumes:
             transition={{ duration: 0.6 }}
             className="text-center space-y-10"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               <span className="text-primary">Resources</span> to Learn More
             </h2>
             <div className="grid md:grid-cols-3 gap-5">
@@ -759,9 +759,9 @@ volumes:
                 { icon: '🏠', title: 'r/homelab', desc: 'Show off your setup', url: 'https://reddit.com/r/homelab' },
               ].map((item) => (
                 <SectionCard key={item.title} className="flex flex-col items-center text-center">
-                  <div className="text-4xl mb-4">{item.icon}</div>
-                  <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                  <p className="text-base text-muted mb-4">{item.desc}</p>
+                  <div className="text-5xl mb-4">{item.icon}</div>
+                  <h3 className="text-2xl font-semibold mb-2">{item.title}</h3>
+                  <p className="text-lg text-muted mb-4">{item.desc}</p>
                   <CopyableLink url={item.url} label="Open" />
                 </SectionCard>
               ))}
@@ -778,14 +778,14 @@ volumes:
             transition={{ duration: 0.6 }}
             className="text-center space-y-8"
           >
-            <div className="text-7xl md:text-8xl">🎯</div>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+            <div className="text-8xl md:text-9xl">🎯</div>
+            <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
               Hands-on <span className="text-primary">Time!</span>
             </h2>
-            <p className="text-2xl md:text-3xl text-muted font-light">
+            <p className="text-3xl md:text-4xl text-muted font-light">
               Let's deploy <span className="text-foreground font-medium">Uptime Kuma</span> together
             </p>
-            <p className="text-xl text-primary/80">
+            <p className="text-2xl text-primary/80">
               Monitor your websites in 5 minutes
             </p>
           </motion.div>
@@ -800,7 +800,7 @@ volumes:
             transition={{ duration: 0.6 }}
             className="space-y-8"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center tracking-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center tracking-tight">
               <span className="text-primary">Quick Start</span> Steps
             </h2>
             <div className="space-y-4">
@@ -810,18 +810,18 @@ volumes:
                 { step: '3', title: 'Open in browser', code: 'http://localhost:3001' },
               ].map((item) => (
                 <SectionCard key={item.step} className="flex items-center gap-6 p-5">
-                  <span className="text-3xl font-bold text-primary w-10 text-center">{item.step}</span>
+                  <span className="text-4xl font-bold text-primary w-12 text-center">{item.step}</span>
                   <div className="flex-1">
-                    <p className="text-lg font-medium mb-1">{item.title}</p>
+                    <p className="text-xl font-medium mb-1">{item.title}</p>
                     <CopyableCode code={item.code} />
                   </div>
                 </SectionCard>
               ))}
               <SectionCard className="flex items-center gap-6 p-5">
-                <span className="text-3xl font-bold text-primary w-10 text-center">4</span>
+                <span className="text-4xl font-bold text-primary w-12 text-center">4</span>
                 <div className="flex-1">
-                  <p className="text-lg font-medium">Add monitors for your sites!</p>
-                  <span className="text-base text-muted">Track uptime for anything</span>
+                  <p className="text-xl font-medium">Add monitors for your sites!</p>
+                  <span className="text-lg text-muted">Track uptime for anything</span>
                 </div>
               </SectionCard>
             </div>
