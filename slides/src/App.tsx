@@ -15,7 +15,7 @@ const NAV_GROUPS = [
   { id: 'hardware', label: 'Hardware', slides: ['hardware-intro', 'hardware-mac', 'hardware-tiers'] },
   { id: 'networking', label: 'Network', slides: ['networking'] },
   { id: 'docker', label: 'Docker', slides: ['docker-intro', 'docker-concepts', 'docker-compose'] },
-  { id: 'services', label: 'Services', slides: ['services-media', 'services-piracy', 'services-gaming', 'services-photos', 'services-dev', 'services-deploy', 'services-productivity', 'services-network', 'services-ai', 'services-security', 'services-more'] },
+  { id: 'services', label: 'Services', slides: ['services-media', 'services-piracy', 'services-gaming', 'services-photos', 'services-dev', 'services-deploy', 'services-productivity', 'services-network', 'services-tailscale', 'services-ai', 'services-security', 'services-more'] },
   { id: 'resources', label: 'Resources', slides: ['resources'] },
   { id: 'activity', label: 'Activity', slides: ['activity', 'activity-steps'] },
 ];
@@ -730,6 +730,37 @@ volumes:
                   <li className="flex items-center gap-2"><span className="text-sky-400">•</span> DNS-over-HTTPS support</li>
                 </ul>
                 <p className="text-xl text-primary mt-4">We'll set this up today!</p>
+              </SectionCard>
+            </div>
+          </motion.div>
+        </Slide>
+
+        {/* SLIDE 19.5: Tailscale */}
+        <Slide id="services-tailscale">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-8"
+          >
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+              <span className="text-indigo-400">Tailscale</span>: Connect Everything
+            </h2>
+            <div className="grid md:grid-cols-2 gap-5 items-stretch">
+              <div className="glass-card overflow-hidden p-0">
+                <img src={img("images/tailscale.png")} alt="Tailscale" className="w-full h-full object-cover object-top" />
+              </div>
+              <SectionCard accentColor="border-indigo-500/25" className="text-left">
+                <p className="text-2xl text-muted mb-4">
+                  A mesh VPN that connects all your devices into one private network. Access your homelab from anywhere.
+                </p>
+                <ul className="space-y-3 text-2xl text-muted">
+                  <li className="flex items-center gap-2"><span className="text-indigo-400">•</span> Access your server from campus or coffee shops</li>
+                  <li className="flex items-center gap-2"><span className="text-indigo-400">•</span> No port forwarding or firewall config</li>
+                  <li className="flex items-center gap-2"><span className="text-indigo-400">•</span> All devices see each other like they're on the same LAN</li>
+                </ul>
+                <p className="text-xl text-primary mt-4">Free for personal use!</p>
               </SectionCard>
             </div>
           </motion.div>
