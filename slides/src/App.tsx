@@ -133,7 +133,7 @@ function App() {
               DTI DevSesh
             </p>
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-5 whitespace-nowrap">
-              Homelabbing & Self-Hosting
+              <span className="text-primary">Homelabbing</span> & <span className="text-secondary">Self-Hosting</span>
             </h1>
             <p className="text-xl md:text-2xl text-muted mb-12">
               Presented by <span className="text-foreground font-semibold">Arsh</span> and <span className="text-foreground font-semibold">Ben</span>
@@ -567,10 +567,13 @@ volumes:
                   <p className="text-xl text-primary mt-2">Play with friends, your rules!</p>
                 </div>
               </SectionCard>
-              <SectionCard accentColor="border-red-500/25">
-                <h3 className="text-3xl font-bold mb-2">Game Servers</h3>
-                <p className="text-xl text-muted">Valheim, Terraria, CS2, and more</p>
-                <p className="text-xl text-primary mt-2">Zero latency, full control</p>
+              <SectionCard accentColor="border-red-500/25" className="overflow-hidden p-0">
+                <img src={img("images/gameservers.jpg")} alt="Game Servers" className="w-full h-40 object-cover object-top" />
+                <div className="p-6">
+                  <h3 className="text-3xl font-bold mb-2">Game Servers</h3>
+                  <p className="text-xl text-muted">Valheim, Terraria, CS2, and more</p>
+                  <p className="text-xl text-primary mt-2">Zero latency, full control</p>
+                </div>
               </SectionCard>
             </div>
           </motion.div>
@@ -615,9 +618,8 @@ volumes:
             transition={{ duration: 0.6 }}
             className="text-center space-y-10"
           >
-            <div className="text-8xl md:text-9xl">🛠️</div>
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-              <span className="text-secondary">Dev</span> Tools
+              🛠️ <span className="text-secondary">Dev</span> Tools
             </h2>
             <div className="grid md:grid-cols-2 gap-4 text-left">
               {[
@@ -651,18 +653,18 @@ volumes:
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               <span className="text-pink-400">Coolify</span>: Self-hosted Vercel
             </h2>
-            <div className="grid md:grid-cols-2 gap-5 items-start">
+            <div className="grid md:grid-cols-2 gap-5 items-stretch">
               <div className="glass-card overflow-hidden p-0">
-                <img src={img("images/coolify.webp")} alt="Coolify" className="w-full h-64 object-cover object-top" />
+                <img src={img("images/coolify.webp")} alt="Coolify" className="w-full h-full object-cover object-top" />
               </div>
-              <SectionCard accentColor="border-pink-500/25" className="text-left h-full">
+              <SectionCard accentColor="border-pink-500/25" className="text-left">
                 <ul className="space-y-3 text-2xl text-muted">
                   <li className="flex items-center gap-2"><span className="text-pink-400">•</span> Deploy from Git with one click</li>
                   <li className="flex items-center gap-2"><span className="text-pink-400">•</span> Automatic SSL certificates</li>
                   <li className="flex items-center gap-2"><span className="text-pink-400">•</span> Database provisioning</li>
                   <li className="flex items-center gap-2"><span className="text-pink-400">•</span> Docker & Docker Compose support</li>
                 </ul>
-                <p className="text-lg text-primary mt-4">Your own PaaS!</p>
+                <p className="text-xl text-primary mt-4">Your own PaaS!</p>
               </SectionCard>
             </div>
           </motion.div>
@@ -714,18 +716,18 @@ volumes:
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               <span className="text-sky-400">AdGuard Home</span>: Block All Ads
             </h2>
-            <div className="grid md:grid-cols-2 gap-5 items-start">
+            <div className="grid md:grid-cols-2 gap-5 items-stretch">
               <div className="glass-card overflow-hidden p-0">
-                <img src={img("images/adguard.gif")} alt="AdGuard Home" className="w-full h-64 object-cover object-top" />
+                <img src={img("images/adguard.gif")} alt="AdGuard Home" className="w-full h-full object-cover object-top" />
               </div>
-              <SectionCard accentColor="border-sky-500/25" className="text-left h-full">
+              <SectionCard accentColor="border-sky-500/25" className="text-left">
                 <ul className="space-y-3 text-2xl text-muted">
                   <li className="flex items-center gap-2"><span className="text-sky-400">•</span> Block ads on ALL devices</li>
                   <li className="flex items-center gap-2"><span className="text-sky-400">•</span> No browser extensions needed</li>
                   <li className="flex items-center gap-2"><span className="text-sky-400">•</span> Parental controls</li>
                   <li className="flex items-center gap-2"><span className="text-sky-400">•</span> DNS-over-HTTPS support</li>
                 </ul>
-                <p className="text-lg text-primary mt-4">We'll set this up today!</p>
+                <p className="text-xl text-primary mt-4">We'll set this up today!</p>
               </SectionCard>
             </div>
           </motion.div>
@@ -744,10 +746,13 @@ volumes:
               <span className="text-cyan-400">AI</span> at Home
             </h2>
             <div className="grid md:grid-cols-2 gap-5 text-left">
-              <SectionCard accentColor="border-cyan-500/25">
-                <h3 className="text-3xl font-bold mb-2">OpenClaw</h3>
-                <p className="text-2xl text-muted">Self-host Claude and other LLMs</p>
-                <p className="text-xl text-primary mt-2">Private AI conversations</p>
+              <SectionCard accentColor="border-cyan-500/25" className="overflow-hidden p-0">
+                <img src={img("images/openclaw.png")} alt="OpenClaw" className="w-full h-32 object-cover object-top" />
+                <div className="p-6">
+                  <h3 className="text-3xl font-bold mb-2">OpenClaw</h3>
+                  <p className="text-2xl text-muted">Self-host Claude and other LLMs</p>
+                  <p className="text-xl text-primary mt-2">Private AI conversations</p>
+                </div>
               </SectionCard>
               <SectionCard accentColor="border-cyan-500/25" className="overflow-hidden p-0">
                 <img src={img("images/openwebui.png")} alt="Open WebUI" className="w-full h-32 object-cover object-top" />
