@@ -146,13 +146,12 @@ function App() {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="glass-card p-8 max-w-lg mx-auto"
             >
-              <p className="text-2xl text-muted mb-4 font-medium">Follow along on your device</p>
-              <div className="flex items-center justify-center mb-4">
-                <div className="bg-white p-3 rounded-xl">
-                  <QRCodeSVG value={PRESENTATION_URL} size={140} />
+              <p className="text-2xl text-muted mb-5 font-medium">Follow along on your device</p>
+              <div className="flex items-center justify-center">
+                <div className="bg-white p-4 rounded-2xl">
+                  <QRCodeSVG value={PRESENTATION_URL} size={200} />
                 </div>
               </div>
-              <CopyableLink url={PRESENTATION_URL} label="Copy link" />
             </motion.div>
 
             {/* Scroll indicator */}
