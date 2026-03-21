@@ -151,14 +151,14 @@ function App() {
                   <div className="bg-white p-4 rounded-2xl">
                     <QRCodeSVG value={PRESENTATION_URL} size={180} />
                   </div>
-                  <p className="text-xl text-muted font-medium">Slides</p>
+                  <p className="text-xl text-foreground font-medium">Slides</p>
                   <CopyableLink url={PRESENTATION_URL} label="Copy link" />
                 </div>
                 <div className="flex flex-col items-center gap-3">
                   <div className="bg-white p-4 rounded-2xl">
                     <QRCodeSVG value="https://github.com/Arsh-S/devsesh-homelabbing" size={180} />
                   </div>
-                  <p className="text-xl text-muted font-medium">GitHub Repo</p>
+                  <p className="text-xl text-foreground font-medium">GitHub Repo</p>
                   <CopyableLink url="https://github.com/Arsh-S/devsesh-homelabbing" label="Copy link" />
                 </div>
               </div>
@@ -927,37 +927,55 @@ function App() {
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center tracking-tight">
               <span className="text-primary">Quick Start</span> Steps
             </h2>
-            <div className="space-y-4">
-              {[
-                { step: '1', title: 'Clone the repo', code: 'git clone https://github.com/Arsh-S/devsesh-homelabbing' },
-                { step: '2', title: 'Enter directory & start', code: 'cd devsesh-homelabbing/demo && ./start.sh', note: 'Windows: use start.bat instead' },
-                { step: '3', title: 'Run the setup wizard', code: 'http://localhost:3000' },
-              ].map((item) => (
-                <SectionCard key={item.step} className="flex items-center gap-6 p-5">
-                  <span className="text-4xl font-bold text-primary w-12 text-center font-display">{item.step}</span>
+            <div className="flex gap-6">
+              <div className="flex-1 space-y-4">
+                {[
+                  { step: '1', title: 'Clone the repo', code: 'git clone https://github.com/Arsh-S/devsesh-homelabbing' },
+                  { step: '2', title: 'Enter directory & start', code: 'cd devsesh-homelabbing/demo && ./start.sh', note: 'Windows: use start.bat instead' },
+                  { step: '3', title: 'Run the setup wizard', code: 'http://localhost:3000' },
+                ].map((item) => (
+                  <SectionCard key={item.step} className="flex items-center gap-6 p-5">
+                    <span className="text-4xl font-bold text-primary w-12 text-center font-display">{item.step}</span>
+                    <div className="flex-1">
+                      <p className="text-2xl font-medium mb-1">{item.title}</p>
+                      <CopyableCode code={item.code} />
+                      {'note' in item && <span className="text-lg text-muted mt-1 block">{item.note}</span>}
+                    </div>
+                  </SectionCard>
+                ))}
+                <SectionCard className="flex items-center gap-6 p-5">
+                  <span className="text-4xl font-bold text-primary w-12 text-center font-display">4</span>
                   <div className="flex-1">
-                    <p className="text-2xl font-medium mb-1">{item.title}</p>
-                    <CopyableCode code={item.code} />
-                    {'note' in item && <span className="text-lg text-muted mt-1 block">{item.note}</span>}
+                    <p className="text-2xl font-medium">Point your DNS to AdGuard</p>
+                    <span className="text-xl text-muted">System Settings → Network → Wi-Fi → Details → DNS → add <code className="text-primary">127.0.0.1</code></span>
+                    <span className="text-lg text-muted/60 mt-1 block">macOS: if port 53 fails, the start script will guide you through fixing it</span>
                   </div>
                 </SectionCard>
-              ))}
-              <SectionCard className="flex items-center gap-6 p-5">
-                <span className="text-4xl font-bold text-primary w-12 text-center font-display">4</span>
-                <div className="flex-1">
-                  <p className="text-2xl font-medium">Point your DNS to AdGuard</p>
-                  <span className="text-xl text-muted">System Settings → Network → Wi-Fi → Details → DNS → add <code className="text-primary">127.0.0.1</code></span>
-                  <span className="text-lg text-muted/60 mt-1 block">macOS: if port 53 fails, the start script will guide you through fixing it</span>
+                <SectionCard className="flex items-center gap-6 p-5">
+                  <span className="text-4xl font-bold text-primary w-12 text-center font-display">5</span>
+                  <div className="flex-1">
+                    <p className="text-2xl font-medium">Open this site before AND after setting DNS</p>
+                    <CopyableCode code="https://www.tomshardware.com/how-to/install-windows-11-without-microsoft-account" />
+                    <span className="text-xl text-muted mt-1 block">Compare the difference, then check <code className="text-primary">localhost:80</code> to see blocked queries</span>
+                  </div>
+                </SectionCard>
+              </div>
+              <div className="hidden md:flex flex-col items-center gap-6 justify-center">
+                <div className="flex flex-col items-center gap-2">
+                  <div className="bg-white p-3 rounded-2xl">
+                    <QRCodeSVG value={PRESENTATION_URL} size={140} />
+                  </div>
+                  <p className="text-lg text-foreground font-medium">Slides</p>
+                  <CopyableLink url={PRESENTATION_URL} label="Copy link" />
                 </div>
-              </SectionCard>
-              <SectionCard className="flex items-center gap-6 p-5">
-                <span className="text-4xl font-bold text-primary w-12 text-center font-display">5</span>
-                <div className="flex-1">
-                  <p className="text-2xl font-medium">Open this site before AND after setting DNS</p>
-                  <CopyableCode code="https://www.tomshardware.com/how-to/install-windows-11-without-microsoft-account" />
-                  <span className="text-xl text-muted mt-1 block">Compare the difference, then check <code className="text-primary">localhost:80</code> to see blocked queries</span>
+                <div className="flex flex-col items-center gap-2">
+                  <div className="bg-white p-3 rounded-2xl">
+                    <QRCodeSVG value="https://github.com/Arsh-S/devsesh-homelabbing" size={140} />
+                  </div>
+                  <p className="text-lg text-foreground font-medium">GitHub Repo</p>
+                  <CopyableLink url="https://github.com/Arsh-S/devsesh-homelabbing" label="Copy link" />
                 </div>
-              </SectionCard>
+              </div>
             </div>
           </motion.div>
         </Slide>
