@@ -13,6 +13,7 @@ const NAV_ITEMS = [
   { id: 'why-money', label: 'Money' },
   { id: 'why-learn', label: 'Learn' },
   { id: 'hardware-intro', label: 'Hardware' },
+  { id: 'hardware-tiers', label: 'Tiers' },
   { id: 'hardware-mac', label: 'Mac?' },
   { id: 'hardware-options', label: 'Options' },
   { id: 'networking', label: 'Networking' },
@@ -144,7 +145,7 @@ function App() {
             <p className="text-xl md:text-2xl text-primary font-semibold mb-3 tracking-[0.2em] uppercase">
               DTI DevSesh
             </p>
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter mb-5 whitespace-nowrap">
+            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-5 whitespace-nowrap">
               Homelabbing & Self-Hosting
             </h1>
             <p className="text-xl md:text-2xl text-muted mb-12">
@@ -191,7 +192,7 @@ function App() {
             transition={{ duration: 0.6 }}
             className="text-center space-y-10"
           >
-            <h2 className="text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight">
+            <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
               What is <span className="text-primary">Homelabbing</span>?
             </h2>
             <p className="text-3xl md:text-4xl text-muted leading-relaxed max-w-3xl mx-auto font-normal">
@@ -214,7 +215,7 @@ function App() {
             className="text-center space-y-8"
           >
             <div className="text-8xl md:text-9xl">🔒</div>
-            <h2 className="text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight">
+            <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
               Your Data, <span className="text-primary">Your Rules</span>
             </h2>
             <p className="text-3xl md:text-4xl text-muted leading-relaxed max-w-3xl mx-auto font-normal">
@@ -233,7 +234,7 @@ function App() {
             className="text-center space-y-8"
           >
             <div className="text-8xl md:text-9xl">💰</div>
-            <h2 className="text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight">
+            <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
               <span className="text-primary">Stop</span> Paying Subscriptions
             </h2>
             <p className="text-3xl md:text-4xl text-muted leading-relaxed max-w-3xl mx-auto font-normal">
@@ -252,7 +253,7 @@ function App() {
             className="text-center space-y-10"
           >
             <div className="text-8xl md:text-9xl">🚀</div>
-            <h2 className="text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight">
+            <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
               Build <span className="text-primary">Real Skills</span>
             </h2>
             <div className="flex flex-wrap justify-center gap-4">
@@ -274,18 +275,67 @@ function App() {
             transition={{ duration: 0.6 }}
             className="text-center space-y-8"
           >
-            <h2 className="text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight">
+            <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
               What <span className="text-primary">Hardware</span> Do I Need?
             </h2>
             <p className="text-3xl md:text-4xl text-muted font-normal">
               Spoiler: You probably already have something
             </p>
-            <div className="text-6xl md:text-7xl pt-4 flex justify-center gap-6">
-              <span>💻</span>
-              <span>🥧</span>
-              <span>🖥️</span>
-              <span>☁️</span>
+            <div className="glass-card overflow-hidden p-0 max-w-3xl mx-auto">
+              <img src="/images/homelab-rack.jpg" alt="Homelab setup" className="w-full h-56 object-cover opacity-80" />
             </div>
+          </motion.div>
+        </Slide>
+
+        {/* SLIDE 6.5: Homelab Tiers */}
+        <Slide id="hardware-tiers">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="space-y-8"
+          >
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-center tracking-tight">
+              Homelabs Come in <span className="text-primary">All Sizes</span>
+            </h2>
+            <div className="grid md:grid-cols-4 gap-4">
+              <SectionCard className="overflow-hidden p-0 text-center">
+                <img src="/images/homelab-laptop.jpg" alt="Laptop server" className="w-full h-36 object-cover" />
+                <div className="p-4">
+                  <p className="text-xl font-bold text-muted">Beginner</p>
+                  <p className="text-2xl font-bold text-foreground">Old Laptop</p>
+                  <p className="text-lg text-primary mt-1">Free</p>
+                </div>
+              </SectionCard>
+              <SectionCard className="overflow-hidden p-0 text-center">
+                <img src="/images/homelab-pi.jpg" alt="Raspberry Pi" className="w-full h-36 object-cover object-center" />
+                <div className="p-4">
+                  <p className="text-xl font-bold text-muted">Hobbyist</p>
+                  <p className="text-2xl font-bold text-foreground">Raspberry Pi</p>
+                  <p className="text-lg text-primary mt-1">~$50</p>
+                </div>
+              </SectionCard>
+              <SectionCard className="overflow-hidden p-0 text-center">
+                <img src="/images/homelab-minipc.jpg" alt="Mini PC" className="w-full h-36 object-cover object-center" />
+                <div className="p-4">
+                  <p className="text-xl font-bold text-muted">Enthusiast</p>
+                  <p className="text-2xl font-bold text-foreground">Mini PC / NUC</p>
+                  <p className="text-lg text-primary mt-1">$200+</p>
+                </div>
+              </SectionCard>
+              <SectionCard className="overflow-hidden p-0 text-center">
+                <img src="/images/homelab-rack.jpg" alt="Server rack" className="w-full h-36 object-cover" />
+                <div className="p-4">
+                  <p className="text-xl font-bold text-muted">Full Send</p>
+                  <p className="text-2xl font-bold text-foreground">Server Rack</p>
+                  <p className="text-lg text-primary mt-1">$500+</p>
+                </div>
+              </SectionCard>
+            </div>
+            <p className="text-2xl text-center text-muted">
+              Start with what you have. Upgrade when you need to.
+            </p>
           </motion.div>
         </Slide>
 
@@ -325,15 +375,17 @@ function App() {
             </h2>
             <div className="grid md:grid-cols-2 gap-5">
               {[
-                { icon: '💻', title: 'Old Laptop', desc: 'Free! Repurpose what you have' },
-                { icon: '🥧', title: 'Raspberry Pi', desc: '~$50-100, tiny & efficient' },
-                { icon: '🖥️', title: 'Mini PC', desc: 'Intel NUC, more powerful' },
-                { icon: '☁️', title: 'Cloud VPS', desc: 'DigitalOcean, Hetzner, Linode' },
+                { title: 'Old Laptop', desc: 'Free! Repurpose what you have', img: '/images/homelab-laptop.jpg' },
+                { title: 'Raspberry Pi', desc: '~$50-100, tiny & efficient', img: '/images/homelab-pi.jpg' },
+                { title: 'Mini PC', desc: 'Intel NUC, more powerful', img: '/images/homelab-minipc.jpg' },
+                { title: 'Server Rack', desc: 'Full power, enterprise hardware', img: '/images/homelab-rack.jpg' },
               ].map((item) => (
-                <SectionCard key={item.title}>
-                  <div className="text-5xl mb-3">{item.icon}</div>
-                  <h3 className="text-3xl font-bold mb-2">{item.title}</h3>
-                  <p className="text-2xl text-muted">{item.desc}</p>
+                <SectionCard key={item.title} className="overflow-hidden p-0">
+                  <img src={item.img} alt={item.title} className="w-full h-32 object-cover" />
+                  <div className="p-5">
+                    <h3 className="text-3xl font-bold mb-2">{item.title}</h3>
+                    <p className="text-2xl text-muted">{item.desc}</p>
+                  </div>
                 </SectionCard>
               ))}
             </div>
@@ -378,7 +430,7 @@ function App() {
             className="text-center space-y-8"
           >
             <div className="text-8xl md:text-9xl">🐳</div>
-            <h2 className="text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight">
+            <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
               <span className="text-primary">Docker</span> 101
             </h2>
             <p className="text-3xl md:text-4xl text-muted leading-relaxed max-w-4xl mx-auto font-normal">
@@ -858,7 +910,7 @@ volumes:
             className="text-center space-y-8"
           >
             <div className="text-8xl md:text-9xl">🛡️</div>
-            <h2 className="text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight">
+            <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
               Hands-on <span className="text-primary">Time!</span>
             </h2>
             <p className="text-3xl md:text-4xl text-muted font-normal">
@@ -889,7 +941,7 @@ volumes:
                 { step: '3', title: 'Run the setup wizard', code: 'http://localhost:3000' },
               ].map((item) => (
                 <SectionCard key={item.step} className="flex items-center gap-6 p-5">
-                  <span className="text-4xl font-extrabold text-primary w-12 text-center font-display">{item.step}</span>
+                  <span className="text-4xl font-bold text-primary w-12 text-center font-display">{item.step}</span>
                   <div className="flex-1">
                     <p className="text-2xl font-medium mb-1">{item.title}</p>
                     <CopyableCode code={item.code} />
@@ -897,14 +949,14 @@ volumes:
                 </SectionCard>
               ))}
               <SectionCard className="flex items-center gap-6 p-5">
-                <span className="text-4xl font-extrabold text-primary w-12 text-center font-display">4</span>
+                <span className="text-4xl font-bold text-primary w-12 text-center font-display">4</span>
                 <div className="flex-1">
                   <p className="text-2xl font-medium">Point your DNS to AdGuard</p>
                   <span className="text-xl text-muted">System Settings → Network → Wi-Fi → Details → DNS → add <code className="text-primary">127.0.0.1</code></span>
                 </div>
               </SectionCard>
               <SectionCard className="flex items-center gap-6 p-5">
-                <span className="text-4xl font-extrabold text-primary w-12 text-center font-display">5</span>
+                <span className="text-4xl font-bold text-primary w-12 text-center font-display">5</span>
                 <div className="flex-1">
                   <p className="text-2xl font-medium">Browse the web and watch ads disappear!</p>
                   <span className="text-xl text-muted">Check your dashboard at <code className="text-primary">localhost:80</code></span>
