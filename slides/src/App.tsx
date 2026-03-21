@@ -930,7 +930,7 @@ function App() {
             <div className="space-y-4">
               {[
                 { step: '1', title: 'Clone the repo', code: 'git clone https://github.com/Arsh-S/devsesh-homelabbing' },
-                { step: '2', title: 'Enter directory & start', code: 'cd devsesh-homelabbing/demo && ./start.sh' },
+                { step: '2', title: 'Enter directory & start', code: 'cd devsesh-homelabbing/demo && ./start.sh', note: 'Windows: use start.bat instead' },
                 { step: '3', title: 'Run the setup wizard', code: 'http://localhost:3000' },
               ].map((item) => (
                 <SectionCard key={item.step} className="flex items-center gap-6 p-5">
@@ -938,6 +938,7 @@ function App() {
                   <div className="flex-1">
                     <p className="text-2xl font-medium mb-1">{item.title}</p>
                     <CopyableCode code={item.code} />
+                    {'note' in item && <span className="text-lg text-muted mt-1 block">{item.note}</span>}
                   </div>
                 </SectionCard>
               ))}
@@ -946,6 +947,7 @@ function App() {
                 <div className="flex-1">
                   <p className="text-2xl font-medium">Point your DNS to AdGuard</p>
                   <span className="text-xl text-muted">System Settings → Network → Wi-Fi → Details → DNS → add <code className="text-primary">127.0.0.1</code></span>
+                  <span className="text-lg text-muted/60 mt-1 block">macOS: if port 53 fails, the start script will guide you through fixing it</span>
                 </div>
               </SectionCard>
               <SectionCard className="flex items-center gap-6 p-5">
