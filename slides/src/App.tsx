@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { QRCodeSVG } from 'qrcode.react'
 import { EtherealShadow } from './components/ui/ethereal-shadow'
-import { CopyButton, CopyableCode, CopyableLink } from './components/ui/copy-button'
+import { CopyableCode, CopyableLink } from './components/ui/copy-button'
 import { ChevronDown } from 'lucide-react'
 
 const PRESENTATION_URL = 'https://arsh-s.github.io/devsesh-homelabbing/';
