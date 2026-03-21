@@ -5,7 +5,7 @@ A 45-minute workshop introducing homelabbing and self-hosting to web developers.
 ## Contents
 
 - **`/slides`** - Interactive presentation (React + Vite)
-- **`/demo`** - Hands-on activity with Uptime Kuma
+- **`/demo`** - Hands-on activity with AdGuard Home
 
 ## Workshop Structure
 
@@ -17,9 +17,9 @@ A 45-minute workshop introducing homelabbing and self-hosting to web developers.
 5. Get Started - Resources and communities
 
 **Hands-on Activity (~20 min)**
-- Deploy Uptime Kuma with Docker Compose
-- Monitor websites and services
-- Explore notifications and status pages
+- Deploy AdGuard Home with Docker Compose
+- Block ads across your entire network
+- Configure DNS and explore the dashboard
 
 ## Quick Start
 
@@ -38,7 +38,7 @@ cd demo
 docker compose up -d
 ```
 
-Open http://localhost:3001
+Open http://localhost:3000
 
 ## Requirements
 

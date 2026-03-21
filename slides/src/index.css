@@ -20,8 +20,8 @@
     --radius: 0.75rem;
 
     /* Font families */
-    --font-display: 'Space Grotesk', system-ui, sans-serif;
-    --font-body: 'DM Sans', system-ui, sans-serif;
+    --font-display: 'Outfit', system-ui, sans-serif;
+    --font-body: 'Instrument Sans', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   }
 
@@ -32,7 +32,9 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: var(--font-body);
-    font-feature-settings: 'ss01' on, 'ss02' on;
+    font-size: 1rem;
+    line-height: 1.6;
+    font-kerning: normal;
   }
 
   html {
@@ -42,17 +44,27 @@
   /* Typography */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
-    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
     color: hsl(var(--foreground));
+    font-weight: 700;
+  }
+
+  h1 {
+    font-weight: 800;
+    letter-spacing: -0.04em;
   }
 
   p, span, label {
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+    line-height: 1.65;
   }
 
   code, pre {
     font-family: var(--font-mono);
+    font-variant-ligatures: none;
+    font-feature-settings: 'liga' 0;
   }
 }
 
@@ -102,6 +114,7 @@
   .badge {
     @apply inline-flex items-center px-3 py-1.5 text-sm font-medium rounded-full;
     @apply bg-card/60 border border-border/50 backdrop-blur-sm;
+    font-family: var(--font-body);
   }
 
   .badge-primary {
@@ -111,6 +124,7 @@
   /* Code block styles */
   .code-block {
     @apply glass-card p-6 font-mono text-sm leading-relaxed overflow-x-auto;
+    font-variant-numeric: tabular-nums;
   }
 
   /* Section accent colors */

@@ -1,12 +1,13 @@
 services:
-  uptime-kuma:
-    image: louislam/uptime-kuma:1
-    container_name: uptime-kuma
-    volumes:
-      - uptime-kuma-data:/app/data
+  adguard:
+    image: adguard/adguardhome
+    container_name: adguard-home
     ports:
-      - "3001:3001"
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "3000:3000/tcp"
+      - "80:80/tcp"
+    volumes:
+      - ./adguard/work:/opt/adguardhome/work
+      - ./adguard/conf:/opt/adguardhome/conf
     restart: unless-stopped
-
-volumes:
-  uptime-kuma-data:

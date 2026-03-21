@@ -1,6 +1,6 @@
 # Next Steps - Expand Your Homelab
 
-You've successfully deployed Uptime Kuma! Here's what to try next.
+You've successfully deployed AdGuard Home! Here's what to try next.
 
 ## More Services to Self-Host
 
@@ -195,9 +195,9 @@ docker run --rm -v uptime-kuma-data:/data -v $(pwd):/backup ubuntu tar xzf /back
 - Enable 2FA where available
 
 ### Monitoring
-- Use Uptime Kuma to monitor all your services!
-- Set up notifications
-- Create a status page
+- Use AdGuard Home to monitor DNS queries across your network
+- Set up Uptime Kuma alongside it to monitor all your services
+- Create status pages and notification alerts
 
 ## Common Multi-Service Setup
 

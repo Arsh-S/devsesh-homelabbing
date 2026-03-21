@@ -1,6 +1,6 @@
-# Homelabbing Workshop - Uptime Kuma Demo
+# Homelabbing Workshop - AdGuard Home Demo
 
-Monitor your websites and services with Uptime Kuma - a self-hosted monitoring tool.
+Block ads across your entire network with AdGuard Home - a network-wide DNS ad blocker you run on your own hardware.
 
 ## Prerequisites
 
@@ -25,71 +25,102 @@ docker compose version
 ### 1. Clone this repository
 
 ```bash
-# Your instructor will provide the repository URL
-git clone <repository-url>
+git clone https://github.com/Arsh-S/devsesh-homelabbing
 cd devsesh-homelabbing/demo
 ```
 
-### 2. Start Uptime Kuma
+### 2. Run the start script
+
+```bash
+./start.sh
+```
+
+Or start manually:
 
 ```bash
 docker compose up -d
 ```
 
-This will:
-- Download the Uptime Kuma Docker image
-- Create a persistent volume for your data
-- Start the container in detached mode
-- Make it available at http://localhost:3001
+### 3. Run the setup wizard
 
-### 3. Open in your browser
+Open **http://localhost:3000** in your browser.
 
-Navigate to: **http://localhost:3001**
+- Click "Get Started"
+- Set the **Admin Web Interface** to port `80`, listen on `0.0.0.0`
+- Set the **DNS Server** to port `53`, listen on `0.0.0.0`
+- Create your admin username and password
+- Click through to finish setup
 
-### 4. Create your admin account
+### 4. Open the dashboard
 
-On first visit, you'll be prompted to create an admin account:
-- Choose a username
-- Set a strong password
-- Click "Create"
+After setup, the dashboard is at: **http://localhost:80**
 
-## Using Uptime Kuma
+## Point Your DNS to AdGuard Home
 
-### Add Your First Monitor
+This is where the magic happens - route your Mac's DNS through AdGuard Home to block ads on every app and website.
 
-1. Click the **"Add New Monitor"** button
-2. Monitor Type: Select "HTTP(s)"
-3. Friendly Name: `Google`
-4. URL: `https://google.com`
-5. Heartbeat Interval: `60` seconds
-6. Click **"Save"**
+### macOS
 
-Watch as Uptime Kuma checks the site every minute!
+1. Open **System Settings**
+2. Go to **Network** > **Wi-Fi** (or your active connection)
+3. Click **Details...**
+4. Go to the **DNS** tab
+5. Remove existing DNS servers (note them down first!)
+6. Add **`127.0.0.1`**
+7. Click **OK**
 
-### Monitor Your Own Projects
+### Verify it's working
 
-Add monitors for:
-- Your personal website
-- Your GitHub Pages site
-- Any project you've deployed
-- APIs you've built
+1. Open a site with ads (e.g. a recipe blog, news site)
+2. Check the AdGuard Home dashboard - you should see queries being blocked
+3. Compare with your phone (not using AdGuard) to see the difference
 
-### Explore Features
+### Revert DNS
 
-- **Status Pages**: Create public status pages
-- **Notifications**: Get alerts via Discord, Slack, email, etc.
-- **Tags**: Organize monitors with tags
-- **Maintenance**: Schedule maintenance windows
+When you're done, go back to DNS settings and either:
+- Remove `127.0.0.1` and re-add your original DNS servers, or
+- Switch to "Automatic" DNS
+
+## Using AdGuard Home
+
+### Dashboard
+
+The dashboard shows:
+- Total DNS queries
+- Queries blocked (and percentage)
+- Top blocked domains
+- Top clients
+
+### Add Custom Block Lists
+
+1. Go to **Filters** > **DNS blocklists**
+2. Click **Add blocklist** > **Choose from list**
+3. Recommended lists:
+   - **AdGuard DNS filter** (enabled by default)
+   - **OISD** - one of the most comprehensive lists
+   - **Steven Black's Unified Hosts**
+
+### Allow a Blocked Site
+
+If AdGuard blocks something you need:
+1. Go to **Query Log**
+2. Find the blocked domain
+3. Click **Unblock**
+
+Or go to **Filters** > **Custom filtering rules** and add:
+```
+@@||example.com^
+```
 
 ## Stopping and Restarting
 
-### Stop Uptime Kuma
+### Stop AdGuard Home
 
 ```bash
 docker compose down
 ```
 
-This stops and removes the container but **keeps your data**.
+**Important:** Remember to revert your DNS settings first, or you'll lose internet access!
 
 ### Start it again
 
@@ -97,7 +128,7 @@ This stops and removes the container but **keeps your data**.
 docker compose up -d
 ```
 
-Your monitors and settings will still be there!
+Your settings and block lists will still be there.
 
 ### View logs
 
@@ -109,31 +140,40 @@ Press `Ctrl+C` to exit logs.
 
 ## Cleanup
 
-To remove everything including data:
+To remove everything including config:
 
 ```bash
-docker compose down -v
+docker compose down
+rm -rf adguard/
 ```
 
-⚠️ This deletes all your monitors and settings!
-
-## What's Next?
-
-Check out [NEXT-STEPS.md](./NEXT-STEPS.md) for more services to try!
+Remember to revert your DNS settings!
 
 ## Troubleshooting
 
-### Port already in use
+### Port 53 already in use (macOS)
 
-If you see `port is already allocated`:
+macOS runs a built-in DNS resolver on port 53. To temporarily disable it:
 
 ```bash
-# Find what's using port 3001
-lsof -i :3001
-
-# Or use a different port by editing docker-compose.yml
-# Change "3001:3001" to "3002:3001"
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.mDNSResponder.plist
 ```
+
+To re-enable it later:
+
+```bash
+sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.mDNSResponder.plist
+```
+
+### Port 80 already in use
+
+Edit `docker-compose.yml` and change `"80:80"` to `"8080:80"`, then access the dashboard at http://localhost:8080 instead.
+
+### No internet after starting
+
+Your DNS might be pointed at AdGuard but it's not running. Either:
+- Start AdGuard Home: `docker compose up -d`
+- Or revert your DNS settings (see "Revert DNS" above)
 
 ### Container won't start
 
@@ -147,14 +187,13 @@ docker compose logs
 # Restart Docker Desktop and try again
 ```
 
-### Can't access localhost:3001
+## What's Next?
 
-- Make sure Docker Desktop is running
-- Check the container is up: `docker compose ps`
-- Try `http://127.0.0.1:3001` instead
+Check out [NEXT-STEPS.md](./NEXT-STEPS.md) for more services to try!
 
 ## Resources
 
-- [Uptime Kuma Documentation](https://github.com/louislam/uptime-kuma/wiki)
+- [AdGuard Home Wiki](https://github.com/AdguardTeam/AdGuardHome/wiki)
 - [Docker Compose Documentation](https://docs.docker.com/compose/)
 - [r/selfhosted](https://reddit.com/r/selfhosted)
+- [r/Adguard](https://reddit.com/r/Adguard)
