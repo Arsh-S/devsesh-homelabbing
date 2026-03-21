@@ -928,8 +928,9 @@ volumes:
               <SectionCard className="flex items-center gap-6 p-5">
                 <span className="text-4xl font-bold text-primary w-12 text-center font-display">5</span>
                 <div className="flex-1">
-                  <p className="text-2xl font-medium">Browse the web and watch ads disappear!</p>
-                  <span className="text-xl text-muted">Check your dashboard at <code className="text-primary">localhost:80</code></span>
+                  <p className="text-2xl font-medium">Visit this ad-heavy site and watch the ads vanish</p>
+                  <CopyableCode code="https://www.tomshardware.com/how-to/install-windows-11-without-microsoft-account" />
+                  <span className="text-xl text-muted mt-1 block">Then check your dashboard at <code className="text-primary">localhost:80</code> to see blocked queries</span>
                 </div>
               </SectionCard>
             </div>
