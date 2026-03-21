@@ -6,35 +6,18 @@ import { ChevronDown } from 'lucide-react'
 
 const PRESENTATION_URL = window.location.href.split('?')[0];
 
-const NAV_ITEMS = [
-  { id: 'home', label: 'Home' },
-  { id: 'what-is-it', label: 'What' },
-  { id: 'why-privacy', label: 'Privacy' },
-  { id: 'why-money', label: 'Money' },
-  { id: 'why-learn', label: 'Learn' },
-  { id: 'hardware-intro', label: 'Hardware' },
-  { id: 'hardware-tiers', label: 'Tiers' },
-  { id: 'hardware-mac', label: 'Mac?' },
-  { id: 'hardware-options', label: 'Options' },
-  { id: 'networking', label: 'Networking' },
-  { id: 'docker-intro', label: 'Docker' },
-  { id: 'docker-concepts', label: 'Concepts' },
-  { id: 'docker-compose', label: 'Compose' },
-  { id: 'services-media', label: 'Media' },
-  { id: 'services-piracy', label: '🏴‍☠️' },
-  { id: 'services-gaming', label: 'Gaming' },
-  { id: 'services-photos', label: 'Photos' },
-  { id: 'services-dev', label: 'Dev' },
-  { id: 'services-deploy', label: 'Deploy' },
-  { id: 'services-productivity', label: 'Docs' },
-  { id: 'services-network', label: 'Network' },
-  { id: 'services-ai', label: 'AI' },
-  { id: 'services-security', label: 'Security' },
-  { id: 'services-more', label: 'More' },
-  { id: 'resources', label: 'Resources' },
-  { id: 'activity', label: 'Activity' },
-  { id: 'activity-steps', label: 'Steps' },
+const NAV_GROUPS = [
+  { id: 'home', label: 'Home', slides: ['home'] },
+  { id: 'why', label: 'Why', slides: ['what-is-it', 'why-privacy', 'why-money', 'why-learn'] },
+  { id: 'hardware', label: 'Hardware', slides: ['hardware-intro', 'hardware-tiers', 'hardware-mac', 'hardware-options'] },
+  { id: 'networking', label: 'Network', slides: ['networking'] },
+  { id: 'docker', label: 'Docker', slides: ['docker-intro', 'docker-concepts', 'docker-compose'] },
+  { id: 'services', label: 'Services', slides: ['services-media', 'services-piracy', 'services-gaming', 'services-photos', 'services-dev', 'services-deploy', 'services-productivity', 'services-network', 'services-ai', 'services-security', 'services-more'] },
+  { id: 'resources', label: 'Resources', slides: ['resources'] },
+  { id: 'activity', label: 'Activity', slides: ['activity', 'activity-steps'] },
 ];
+
+const ALL_SLIDES = NAV_GROUPS.flatMap(g => g.slides);
 
 function Slide({ id, children }: { id: string; children: React.ReactNode }) {
   return (
@@ -66,7 +49,7 @@ function SectionCard({
 }
 
 function App() {
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeGroup, setActiveGroup] = useState('home');
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -78,12 +61,13 @@ function App() {
       const viewportHeight = container.clientHeight;
       const scrollMid = scrollTop + viewportHeight / 2;
 
-      for (const item of NAV_ITEMS) {
-        const el = document.getElementById(item.id);
+      for (const slide of ALL_SLIDES) {
+        const el = document.getElementById(slide);
         if (el) {
           const top = el.offsetTop;
           if (scrollMid >= top && scrollMid < top + el.offsetHeight) {
-            setActiveSection(item.id);
+            const group = NAV_GROUPS.find(g => g.slides.includes(slide));
+            if (group) setActiveGroup(group.id);
             break;
           }
         }
@@ -112,18 +96,18 @@ function App() {
     >
       {/* Navigation */}
       <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
-        <div className="flex gap-0.5 px-1.5 py-1 bg-card/70 backdrop-blur-xl rounded-full border border-border/40 overflow-x-auto max-w-[95vw]">
-          {NAV_ITEMS.map((item) => (
+        <div className="flex gap-1 px-2 py-1.5 bg-card/70 backdrop-blur-xl rounded-full border border-border/40">
+          {NAV_GROUPS.map((group) => (
             <button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className={`px-2.5 py-1.5 text-xs font-medium rounded-full transition-all duration-200 whitespace-nowrap ${
-                activeSection === item.id
+              key={group.id}
+              onClick={() => scrollToSection(group.slides[0])}
+              className={`px-3.5 py-1.5 text-sm font-medium rounded-full transition-all duration-200 whitespace-nowrap ${
+                activeGroup === group.id
                   ? 'bg-primary text-primary-foreground shadow-sm'
                   : 'text-muted hover:text-foreground hover:bg-white/5'
               }`}
             >
-              {item.label}
+              {group.label}
             </button>
           ))}
         </div>
