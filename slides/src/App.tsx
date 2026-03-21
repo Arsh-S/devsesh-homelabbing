@@ -146,10 +146,18 @@ function App() {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="glass-card p-8 max-w-lg mx-auto"
             >
-              <p className="text-2xl text-muted mb-5 font-medium">Follow along on your device</p>
-              <div className="flex items-center justify-center">
-                <div className="bg-white p-4 rounded-2xl">
-                  <QRCodeSVG value={PRESENTATION_URL} size={200} />
+              <div className="flex items-center justify-center gap-10">
+                <div className="flex flex-col items-center gap-3">
+                  <div className="bg-white p-4 rounded-2xl">
+                    <QRCodeSVG value={PRESENTATION_URL} size={180} />
+                  </div>
+                  <p className="text-xl text-muted font-medium">Slides</p>
+                </div>
+                <div className="flex flex-col items-center gap-3">
+                  <div className="bg-white p-4 rounded-2xl">
+                    <QRCodeSVG value="https://github.com/Arsh-S/devsesh-homelabbing" size={180} />
+                  </div>
+                  <p className="text-xl text-muted font-medium">GitHub Repo</p>
                 </div>
               </div>
             </motion.div>
