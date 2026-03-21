@@ -1,10 +1,13 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
+import { QRCodeSVG } from 'qrcode.react'
 import { EtherealShadow } from './components/ui/ethereal-shadow'
 import { CopyButton, CopyableCode, CopyableLink } from './components/ui/copy-button'
 import { ChevronDown } from 'lucide-react'
 
-const PRESENTATION_URL = window.location.href.split('?')[0];
+const PRESENTATION_URL = 'https://arsh-s.github.io/devsesh-homelabbing/';
+const BASE = import.meta.env.BASE_URL;
+const img = (path: string) => `${BASE}${path}`.replace(/\/\//g, '/');
 
 const NAV_GROUPS = [
   { id: 'home', label: 'Home', slides: ['home'] },
@@ -144,10 +147,12 @@ function App() {
               className="glass-card p-8 max-w-lg mx-auto"
             >
               <p className="text-2xl text-muted mb-4 font-medium">Follow along on your device</p>
-              <div className="flex items-center justify-center">
-                <CopyableLink url={PRESENTATION_URL} label="Copy presentation link" />
+              <div className="flex items-center justify-center mb-4">
+                <div className="bg-white p-3 rounded-xl">
+                  <QRCodeSVG value={PRESENTATION_URL} size={140} />
+                </div>
               </div>
-              <p className="text-xl text-muted/70 mt-4">or scan the QR code</p>
+              <CopyableLink url={PRESENTATION_URL} label="Copy link" />
             </motion.div>
 
             {/* Scroll indicator */}
@@ -266,7 +271,7 @@ function App() {
               Spoiler: You probably already have something
             </p>
             <div className="glass-card overflow-hidden p-0 max-w-3xl mx-auto">
-              <img src="/images/homelab-rack.jpg" alt="Homelab setup" className="w-full h-56 object-cover opacity-80" />
+              <img src={img("images/homelab-rack.jpg")} alt="Homelab setup" className="w-full h-56 object-cover opacity-80" />
             </div>
           </motion.div>
         </Slide>
@@ -285,7 +290,7 @@ function App() {
             </h2>
             <div className="grid md:grid-cols-4 gap-4">
               <SectionCard className="overflow-hidden p-0 text-center">
-                <img src="/images/homelab-laptop.jpg" alt="Laptop server" className="w-full h-36 object-cover" />
+                <img src={img("images/homelab-laptop.jpg")} alt="Laptop server" className="w-full h-36 object-cover" />
                 <div className="p-4">
                   <p className="text-xl font-bold text-muted">Beginner</p>
                   <p className="text-2xl font-bold text-foreground">Old Laptop</p>
@@ -293,7 +298,7 @@ function App() {
                 </div>
               </SectionCard>
               <SectionCard className="overflow-hidden p-0 text-center">
-                <img src="/images/homelab-pi.jpg" alt="Raspberry Pi" className="w-full h-36 object-cover object-center" />
+                <img src={img("images/homelab-pi.jpg")} alt="Raspberry Pi" className="w-full h-36 object-cover object-center" />
                 <div className="p-4">
                   <p className="text-xl font-bold text-muted">Hobbyist</p>
                   <p className="text-2xl font-bold text-foreground">Raspberry Pi</p>
@@ -301,7 +306,7 @@ function App() {
                 </div>
               </SectionCard>
               <SectionCard className="overflow-hidden p-0 text-center">
-                <img src="/images/homelab-minipc.jpg" alt="Mini PC" className="w-full h-36 object-cover object-center" />
+                <img src={img("images/homelab-minipc.jpg")} alt="Mini PC" className="w-full h-36 object-cover object-center" />
                 <div className="p-4">
                   <p className="text-xl font-bold text-muted">Enthusiast</p>
                   <p className="text-2xl font-bold text-foreground">Mini PC / NUC</p>
@@ -309,7 +314,7 @@ function App() {
                 </div>
               </SectionCard>
               <SectionCard className="overflow-hidden p-0 text-center">
-                <img src="/images/homelab-rack.jpg" alt="Server rack" className="w-full h-36 object-cover" />
+                <img src={img("images/homelab-rack.jpg")} alt="Server rack" className="w-full h-36 object-cover" />
                 <div className="p-4">
                   <p className="text-xl font-bold text-muted">Full Send</p>
                   <p className="text-2xl font-bold text-foreground">Server Rack</p>
@@ -359,13 +364,13 @@ function App() {
             </h2>
             <div className="grid md:grid-cols-2 gap-5">
               {[
-                { title: 'Old Laptop', desc: 'Free! Repurpose what you have', img: '/images/homelab-laptop.jpg' },
-                { title: 'Raspberry Pi', desc: '~$50-100, tiny & efficient', img: '/images/homelab-pi.jpg' },
-                { title: 'Mini PC', desc: 'Intel NUC, more powerful', img: '/images/homelab-minipc.jpg' },
-                { title: 'Server Rack', desc: 'Full power, enterprise hardware', img: '/images/homelab-rack.jpg' },
+                { title: 'Old Laptop', desc: 'Free! Repurpose what you have', img: 'images/homelab-laptop.jpg' },
+                { title: 'Raspberry Pi', desc: '~$50-100, tiny & efficient', img: 'images/homelab-pi.jpg' },
+                { title: 'Mini PC', desc: 'Intel NUC, more powerful', img: 'images/homelab-minipc.jpg' },
+                { title: 'Server Rack', desc: 'Full power, enterprise hardware', img: 'images/homelab-rack.jpg' },
               ].map((item) => (
                 <SectionCard key={item.title} className="overflow-hidden p-0">
-                  <img src={item.img} alt={item.title} className="w-full h-32 object-cover" />
+                  <img src={img(item.img)} alt={item.title} className="w-full h-32 object-cover" />
                   <div className="p-5">
                     <h3 className="text-3xl font-bold mb-2">{item.title}</h3>
                     <p className="text-2xl text-muted">{item.desc}</p>
@@ -513,7 +518,7 @@ volumes:
             </h2>
             <div className="grid md:grid-cols-2 gap-5 text-left">
               <SectionCard accentColor="border-purple-500/25" className="overflow-hidden p-0">
-                <img src="/images/jellyfin.png" alt="Jellyfin" className="w-full h-40 object-cover object-top" />
+                <img src={img("images/jellyfin.png")} alt="Jellyfin" className="w-full h-40 object-cover object-top" />
                 <div className="p-6">
                   <h3 className="text-3xl font-bold mb-2">Plex / Jellyfin</h3>
                   <p className="text-2xl text-muted">Stream your movies and TV anywhere</p>
@@ -521,7 +526,7 @@ volumes:
                 </div>
               </SectionCard>
               <SectionCard accentColor="border-purple-500/25" className="overflow-hidden p-0">
-                <img src="/images/navidrome.png" alt="Navidrome" className="w-full h-40 object-cover object-top" />
+                <img src={img("images/navidrome.png")} alt="Navidrome" className="w-full h-40 object-cover object-top" />
                 <div className="p-6">
                   <h3 className="text-3xl font-bold mb-2">Navidrome</h3>
                   <p className="text-2xl text-muted">Your music library, streamed</p>
@@ -579,7 +584,7 @@ volumes:
             </h2>
             <div className="grid md:grid-cols-2 gap-5 text-left">
               <SectionCard accentColor="border-red-500/25" className="overflow-hidden p-0">
-                <img src="/images/minecraft.gif" alt="Minecraft" className="w-full h-40 object-cover" />
+                <img src={img("images/minecraft.gif")} alt="Minecraft" className="w-full h-40 object-cover" />
                 <div className="p-6">
                   <h3 className="text-3xl font-bold mb-2">Minecraft Server</h3>
                   <p className="text-xl text-muted">Host your own worlds with mods</p>
@@ -608,7 +613,7 @@ volumes:
               <span className="text-green-400">Immich</span>: The Google Photos Killer
             </h2>
             <div className="glass-card overflow-hidden p-0 max-w-4xl mx-auto">
-              <img src="/images/immich.png" alt="Immich" className="w-full h-64 object-cover object-top" />
+              <img src={img("images/immich.png")} alt="Immich" className="w-full h-64 object-cover object-top" />
             </div>
             <div className="grid md:grid-cols-3 gap-4 text-left">
               {[
@@ -640,13 +645,13 @@ volumes:
             </h2>
             <div className="grid md:grid-cols-2 gap-4 text-left">
               {[
-                { title: 'Supabase', desc: 'Self-host your entire backend', sub: 'Database + Auth + Storage + Realtime', img: '/images/supabase.png' },
-                { title: 'GitLab', desc: 'Complete DevOps platform', sub: 'Git + CI/CD + Registry', img: '/images/gitlab.png' },
-                { title: 'Uptime Kuma', desc: 'Monitor your sites 24/7', sub: 'Alerts via Discord, Slack, email', img: '/images/uptimekuma.jpg' },
-                { title: 'code-server', desc: 'VS Code in your browser', sub: 'Code from anywhere', img: '/images/code-server.png' },
+                { title: 'Supabase', desc: 'Self-host your entire backend', sub: 'Database + Auth + Storage + Realtime', img: 'images/supabase.png' },
+                { title: 'GitLab', desc: 'Complete DevOps platform', sub: 'Git + CI/CD + Registry', img: 'images/gitlab.png' },
+                { title: 'Uptime Kuma', desc: 'Monitor your sites 24/7', sub: 'Alerts via Discord, Slack, email', img: 'images/uptimekuma.jpg' },
+                { title: 'code-server', desc: 'VS Code in your browser', sub: 'Code from anywhere', img: 'images/code-server.png' },
               ].map((item) => (
                 <SectionCard key={item.title} accentColor="border-secondary/25" className="overflow-hidden p-0">
-                  <img src={item.img} alt={item.title} className="w-full h-28 object-cover object-top" />
+                  <img src={img(item.img)} alt={item.title} className="w-full h-28 object-cover object-top" />
                   <div className="p-5">
                     <h3 className="text-2xl font-bold mb-1">{item.title}</h3>
                     <p className="text-xl text-muted">{item.desc}</p>
@@ -672,7 +677,7 @@ volumes:
             </h2>
             <div className="grid md:grid-cols-2 gap-5 items-start">
               <div className="glass-card overflow-hidden p-0">
-                <img src="/images/coolify.webp" alt="Coolify" className="w-full h-64 object-cover object-top" />
+                <img src={img("images/coolify.webp")} alt="Coolify" className="w-full h-64 object-cover object-top" />
               </div>
               <SectionCard accentColor="border-pink-500/25" className="text-left h-full">
                 <ul className="space-y-3 text-2xl text-muted">
@@ -702,7 +707,7 @@ volumes:
             </h2>
             <div className="grid md:grid-cols-2 gap-5 text-left">
               <SectionCard accentColor="border-emerald-500/25" className="overflow-hidden p-0">
-                <img src="/images/overleaf.png" alt="Overleaf" className="w-full h-40 object-cover object-top" />
+                <img src={img("images/overleaf.png")} alt="Overleaf" className="w-full h-40 object-cover object-top" />
                 <div className="p-6">
                   <h3 className="text-3xl font-bold mb-2">Overleaf</h3>
                   <p className="text-xl text-muted">Collaborative LaTeX editor</p>
@@ -710,7 +715,7 @@ volumes:
                 </div>
               </SectionCard>
               <SectionCard accentColor="border-emerald-500/25" className="overflow-hidden p-0">
-                <img src="/images/outline.png" alt="Outline" className="w-full h-40 object-cover object-top" />
+                <img src={img("images/outline.png")} alt="Outline" className="w-full h-40 object-cover object-top" />
                 <div className="p-6">
                   <h3 className="text-3xl font-bold mb-2">Outline</h3>
                   <p className="text-xl text-muted">Beautiful team wiki</p>
@@ -735,7 +740,7 @@ volumes:
             </h2>
             <div className="grid md:grid-cols-2 gap-5 items-start">
               <div className="glass-card overflow-hidden p-0">
-                <img src="/images/adguard.gif" alt="AdGuard Home" className="w-full h-64 object-cover object-top" />
+                <img src={img("images/adguard.gif")} alt="AdGuard Home" className="w-full h-64 object-cover object-top" />
               </div>
               <SectionCard accentColor="border-sky-500/25" className="text-left h-full">
                 <ul className="space-y-3 text-2xl text-muted">
@@ -769,7 +774,7 @@ volumes:
                 <p className="text-xl text-primary mt-2">Private AI conversations</p>
               </SectionCard>
               <SectionCard accentColor="border-cyan-500/25" className="overflow-hidden p-0">
-                <img src="/images/openwebui.png" alt="Open WebUI" className="w-full h-32 object-cover object-top" />
+                <img src={img("images/openwebui.png")} alt="Open WebUI" className="w-full h-32 object-cover object-top" />
                 <div className="p-6">
                   <h3 className="text-3xl font-bold mb-2">Ollama + Open WebUI</h3>
                   <p className="text-xl text-muted">Run LLMs locally (Llama, Mistral)</p>
@@ -795,7 +800,7 @@ volumes:
             </h2>
             <div className="grid md:grid-cols-2 gap-5 text-left">
               <SectionCard accentColor="border-orange-500/25" className="overflow-hidden p-0">
-                <img src="/images/vaultwarden.png" alt="Vaultwarden" className="w-full h-40 object-cover object-top" />
+                <img src={img("images/vaultwarden.png")} alt="Vaultwarden" className="w-full h-40 object-cover object-top" />
                 <div className="p-6">
                   <h3 className="text-3xl font-bold mb-2">Vaultwarden</h3>
                   <p className="text-xl text-muted">Self-hosted Bitwarden server</p>
@@ -803,7 +808,7 @@ volumes:
                 </div>
               </SectionCard>
               <SectionCard accentColor="border-orange-500/25" className="overflow-hidden p-0">
-                <img src="/images/authelia.png" alt="Authelia" className="w-full h-40 object-cover object-top" />
+                <img src={img("images/authelia.png")} alt="Authelia" className="w-full h-40 object-cover object-top" />
                 <div className="p-6">
                   <h3 className="text-3xl font-bold mb-2">Authelia</h3>
                   <p className="text-xl text-muted">Single sign-on for all services</p>
@@ -828,21 +833,21 @@ volumes:
             </h2>
             <div className="grid md:grid-cols-3 gap-4 text-left">
               <SectionCard accentColor="border-yellow-500/25" className="overflow-hidden p-0">
-                <img src="/images/homeassistant.png" alt="Home Assistant" className="w-full h-28 object-cover object-top" />
+                <img src={img("images/homeassistant.png")} alt="Home Assistant" className="w-full h-28 object-cover object-top" />
                 <div className="p-5">
                   <h3 className="text-2xl font-bold mb-2">Home Assistant</h3>
                   <p className="text-xl text-muted">Smart home automation</p>
                 </div>
               </SectionCard>
               <SectionCard accentColor="border-yellow-500/25" className="overflow-hidden p-0">
-                <img src="/images/nextcloud.png" alt="Nextcloud" className="w-full h-28 object-cover object-top" />
+                <img src={img("images/nextcloud.png")} alt="Nextcloud" className="w-full h-28 object-cover object-top" />
                 <div className="p-5">
                   <h3 className="text-2xl font-bold mb-2">Nextcloud</h3>
                   <p className="text-xl text-muted">Google Drive alternative</p>
                 </div>
               </SectionCard>
               <SectionCard accentColor="border-yellow-500/25" className="overflow-hidden p-0">
-                <img src="/images/n8n.png" alt="n8n" className="w-full h-28 object-cover object-top" />
+                <img src={img("images/n8n.png")} alt="n8n" className="w-full h-28 object-cover object-top" />
                 <div className="p-5">
                   <h3 className="text-2xl font-bold mb-2">n8n</h3>
                   <p className="text-xl text-muted">Workflow automation</p>
