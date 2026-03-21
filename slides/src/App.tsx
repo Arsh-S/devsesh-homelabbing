@@ -453,6 +453,7 @@ function App() {
               </p>
             </div>
             <div className="glass-card p-6">
+              <p className="text-lg text-muted/60 font-mono mb-3">docker-compose.yml</p>
               <pre className="text-xl md:text-2xl overflow-x-auto font-mono">
                 <code className="text-primary/90">{`services:
   adguard:
