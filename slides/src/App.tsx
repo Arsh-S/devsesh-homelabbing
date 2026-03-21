@@ -12,7 +12,7 @@ const img = (path: string) => `${BASE}${path}`.replace(/\/\//g, '/');
 const NAV_GROUPS = [
   { id: 'home', label: 'Home', slides: ['home'] },
   { id: 'why', label: 'Why', slides: ['what-is-it', 'why-privacy', 'why-money', 'why-learn'] },
-  { id: 'hardware', label: 'Hardware', slides: ['hardware-intro', 'hardware-tiers', 'hardware-mac', 'hardware-options'] },
+  { id: 'hardware', label: 'Hardware', slides: ['hardware-intro', 'hardware-mac', 'hardware-tiers'] },
   { id: 'networking', label: 'Network', slides: ['networking'] },
   { id: 'docker', label: 'Docker', slides: ['docker-intro', 'docker-concepts', 'docker-compose'] },
   { id: 'services', label: 'Services', slides: ['services-media', 'services-piracy', 'services-gaming', 'services-photos', 'services-dev', 'services-deploy', 'services-productivity', 'services-network', 'services-ai', 'services-security', 'services-more'] },
@@ -283,7 +283,29 @@ function App() {
           </motion.div>
         </Slide>
 
-        {/* SLIDE 6.5: Homelab Tiers */}
+        {/* SLIDE 7: Mac Mini Joke */}
+        <Slide id="hardware-mac">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center space-y-8"
+          >
+            <div className="text-8xl md:text-9xl">🍎</div>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+              You do <span className="text-destructive">NOT</span> need a Mac Mini
+            </h2>
+            <p className="text-3xl md:text-4xl text-muted font-normal">
+              ...but it <span className="text-foreground italic">is</span> a pretty good option
+            </p>
+            <p className="text-2xl text-primary/80">
+              (ARM is efficient & macOS runs Docker great)
+            </p>
+          </motion.div>
+        </Slide>
+
+        {/* SLIDE 8: Homelab Tiers */}
         <Slide id="hardware-tiers">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -332,59 +354,6 @@ function App() {
             <p className="text-2xl text-center text-muted">
               Start with what you have. Upgrade when you need to.
             </p>
-          </motion.div>
-        </Slide>
-
-        {/* SLIDE 7: Mac Mini Joke */}
-        <Slide id="hardware-mac">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center space-y-8"
-          >
-            <div className="text-8xl md:text-9xl">🍎</div>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-              You do <span className="text-destructive">NOT</span> need a Mac Mini
-            </h2>
-            <p className="text-3xl md:text-4xl text-muted font-normal">
-              ...but it <span className="text-foreground italic">is</span> a pretty good option
-            </p>
-            <p className="text-2xl text-primary/80">
-              (ARM is efficient & macOS runs Docker great)
-            </p>
-          </motion.div>
-        </Slide>
-
-        {/* SLIDE 8: Hardware Options */}
-        <Slide id="hardware-options">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-10"
-          >
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-center tracking-tight">
-              Hardware <span className="text-primary">Options</span>
-            </h2>
-            <div className="grid md:grid-cols-2 gap-5">
-              {[
-                { title: 'Old Laptop', desc: 'Free! Repurpose what you have', img: 'images/homelab-laptop.jpg' },
-                { title: 'Raspberry Pi', desc: '~$50-100, tiny & efficient', img: 'images/homelab-pi.jpg' },
-                { title: 'Mini PC', desc: 'Intel NUC, more powerful', img: 'images/homelab-minipc.jpg' },
-                { title: 'Server Rack', desc: 'Full power, enterprise hardware', img: 'images/homelab-rack.jpg' },
-              ].map((item) => (
-                <SectionCard key={item.title} className="overflow-hidden p-0">
-                  <img src={img(item.img)} alt={item.title} className="w-full h-32 object-cover" />
-                  <div className="p-5">
-                    <h3 className="text-3xl font-bold mb-2">{item.title}</h3>
-                    <p className="text-2xl text-muted">{item.desc}</p>
-                  </div>
-                </SectionCard>
-              ))}
-            </div>
           </motion.div>
         </Slide>
 
