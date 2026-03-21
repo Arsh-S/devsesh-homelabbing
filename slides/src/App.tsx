@@ -152,12 +152,14 @@ function App() {
                     <QRCodeSVG value={PRESENTATION_URL} size={180} />
                   </div>
                   <p className="text-xl text-muted font-medium">Slides</p>
+                  <CopyableLink url={PRESENTATION_URL} label="Copy link" />
                 </div>
                 <div className="flex flex-col items-center gap-3">
                   <div className="bg-white p-4 rounded-2xl">
                     <QRCodeSVG value="https://github.com/Arsh-S/devsesh-homelabbing" size={180} />
                   </div>
                   <p className="text-xl text-muted font-medium">GitHub Repo</p>
+                  <CopyableLink url="https://github.com/Arsh-S/devsesh-homelabbing" label="Copy link" />
                 </div>
               </div>
             </motion.div>
