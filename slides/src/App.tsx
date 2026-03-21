@@ -452,29 +452,18 @@ function App() {
                 Define everything in one YAML file
               </p>
             </div>
-            <div className="glass-card p-6 flex gap-4">
-              <pre className="text-xl md:text-2xl overflow-x-auto font-mono flex-1">
+            <div className="glass-card p-6">
+              <pre className="text-xl md:text-2xl overflow-x-auto font-mono">
                 <code className="text-primary/90">{`services:
-  uptime-kuma:
-    image: louislam/uptime-kuma:1
+  adguard:
+    image: adguard/adguardhome
     ports:
-      - "3001:3001"
+      - "53:53/udp"
+      - "3000:3000"
+      - "80:80"
     volumes:
-      - data:/app/data
-
-volumes:
-  data:`}</code>
+      - ./adguard/conf:/opt/adguardhome/conf`}</code>
               </pre>
-              <CopyButton text={`services:
-  uptime-kuma:
-    image: louislam/uptime-kuma:1
-    ports:
-      - "3001:3001"
-    volumes:
-      - data:/app/data
-
-volumes:
-  data:`} />
             </div>
             <p className="text-2xl text-center text-muted">
               One command: <code className="text-primary font-mono bg-card/60 px-3 py-1.5 rounded-lg">docker compose up -d</code>
